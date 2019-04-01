@@ -31,15 +31,16 @@ public class AgentService implements AgentInterface{
 
 	@Override
 	public Agent GetAgentByLoginAndPassword(String login, String password) {
-		TypedQuery<Agent> query = 
-				em.createQuery("select e from User e WHERE e.role like agent and e.Login=:login and e.Password=:password ", Agent.class);
+		TypedQuery<User> query = 
+				em.createQuery("select e from User e WHERE e.Login=:login and e.Password=:password ", User.class);
 				query.setParameter("login", login); 
 				query.setParameter("password", password); 
+				
 				Agent user = null; 
 				try {
-					user = query.getSingleResult(); 
+					user = (Agent)query.getSingleResult(); 
 					
-					
+					System.out.println("54545454545888547558  "+user);
 				}
 				catch (Exception e) {
 					System.out.println("Erreur : " + e);
