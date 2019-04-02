@@ -112,7 +112,7 @@ public abstract class BankAccount implements Serializable{
 	public void setClose_Date(Date close_Date) {
 		Close_Date = close_Date;
 	}
-	public boolean getStatus() {
+	public boolean isStatus() {
 		return Status;
 	}
 	public void setStatus(boolean status) {

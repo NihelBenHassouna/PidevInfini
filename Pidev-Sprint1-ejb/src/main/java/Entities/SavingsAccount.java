@@ -22,7 +22,7 @@ public class SavingsAccount extends BankAccount{
 	public String toString() {
 		return "SavingsAccount [Rate=" + Rate + ", getId()=" + getId() + ", getRib()=" + getRib() + ", getBalance()="
 				+ getBalance() + ", getCreation()=" + getCreation() + ", getClose_Date()=" + getClose_Date()
-				+ ", isStatus()=" + getStatus() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
+				+ ", isStatus()=" + isStatus() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + "]";
 	}
 	public SavingsAccount() {

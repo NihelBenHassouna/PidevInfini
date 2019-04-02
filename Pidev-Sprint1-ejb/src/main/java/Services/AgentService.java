@@ -20,7 +20,7 @@ public class AgentService implements AgentInterface{
 	public AgentService(){}
 	@Override
 	public boolean AgentExist(String login, String password) {
-		String sql ="Select count(d) from User d where role='agent' and Password=:password and Login=:login";
+		String sql ="Select count(d) from User d where role='Agent' and Password=:password and Login=:login";
 		Query q =em.createQuery(sql);
 		q.setParameter("login", login);
 		q.setParameter("password", password);
@@ -30,22 +30,16 @@ public class AgentService implements AgentInterface{
 	}
 
 	@Override
-	public Agent GetAgentByLoginAndPassword(String login, String password) {
+	public User GetAgentByLoginAndPassword(String login, String password) {
 		TypedQuery<User> query = 
 				em.createQuery("select e from User e WHERE e.Login=:login and e.Password=:password ", User.class);
-				query.setParameter("login", login); 
-				query.setParameter("password", password); 
-				
-				Agent user = null; 
-				try {
-					user = (Agent)query.getSingleResult(); 
-					
+				query.setParameter("login",login); 
+				query.setParameter("password",password); 
+				User user=null;
+					user = query.getSingleResult(); 
 					System.out.println("54545454545888547558  "+user);
-				}
-				catch (Exception e) {
-					System.out.println("Erreur : " + e);
-				}
-				return user;
+					return user;
+			
 			}
 	}
 

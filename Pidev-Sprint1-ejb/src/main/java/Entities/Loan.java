@@ -44,14 +44,26 @@ public abstract class Loan implements Serializable{
 	@Column(name="Refund_Mode")
 	@Enumerated(EnumType.STRING)
 	protected Frequency RefundMode;
+	@Column(name="GracePeriod") 
+	protected int GracePeriod;
+	@OneToOne
+	Gurantor guarantor;
+	
+	
 	@Column(name="Frequency_Amount") 
 	private Double FrequencyAmount;
 	@ManyToOne
 	private CurrentAcount currentAccount;
 	@OneToMany(mappedBy="loan", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
 	private List<Penalty> penalties = new ArrayList<>();
-	@OneToOne
-	Gurantor guarantor;
+
+	public int getGracePeriod() {
+		return GracePeriod;
+	}
+	public void setGracePeriod(int gracePeriod) {
+		GracePeriod = gracePeriod;
+	}
+
 	@OneToOne
 	Gurantee gurantee;
 	

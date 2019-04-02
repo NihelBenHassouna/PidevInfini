@@ -28,13 +28,13 @@ public class Admin implements Serializable{
 	@Column(name="Last_Name") 
 	private String LastName;
 	@Column(name="Admin_Login")
-	private String login;
+	protected String Login;
 	@Column(name="Admin_Password")
-	protected String password;
+	protected String Password;
 	@OneToMany(mappedBy="admin", cascade = {CascadeType.ALL})
 	private List<Agency> agencies = new ArrayList<>();
 	public Admin() {
-		
+		super();
 	}
 	public List<Agency> getAgencies() {
 		return agencies;
@@ -43,23 +43,10 @@ public class Admin implements Serializable{
 		this.agencies = agencies;
 	}
 
-
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", Login=" + login
-				+ ", Password=" + password ;
+		return "Admin [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", agencies=" + agencies
+				+ "]";
 	}
 	public int getId() {
 		return id;
@@ -79,7 +66,14 @@ public class Admin implements Serializable{
 	public void setLastName(String lastName) {
 		LastName = lastName;
 	}
-
+	public Admin(String firstName, String lastName) {
+		super();
+		FirstName = firstName;
+		LastName = lastName;
+	}
 	
-	
+	public void addAgency(Agency agency){
+		agency.setAdmin(this);
+		this.agencies.add(agency);
+	}
 }

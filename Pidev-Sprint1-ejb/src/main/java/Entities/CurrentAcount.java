@@ -28,7 +28,7 @@ public class CurrentAcount extends BankAccount{
 	public String toString() {
 		return "CurrentAcount [Overdradtauth=" + Overdradtauth + ", getId()=" + getId() + ", getRib()=" + getRib()
 				+ ", getBalance()=" + getBalance() + ", getCreation()=" + getCreation() + ", getClose_Date()="
-				+ getClose_Date() + ", isStatus()=" + getStatus() + ", toString()=" + super.toString() + ", getClass()="
+				+ getClose_Date() + ", isStatus()=" + isStatus() + ", toString()=" + super.toString() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 	public List<Loan> getLoans() {
