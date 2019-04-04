@@ -81,6 +81,16 @@ public abstract class User implements Serializable {
 	private String CampanyName;
 	@Column(name = "User_Position")
 	private String Position;
+	@Column(name="blocked")
+	private boolean blocked;
+	
+	public boolean getBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
+	}
 
 	public String getPosition() {
 		return Position;
