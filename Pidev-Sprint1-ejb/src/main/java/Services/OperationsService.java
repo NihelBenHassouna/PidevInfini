@@ -31,7 +31,7 @@ public class OperationsService implements OperationInterface {
 	
 	
 	@Override
-	public void verser(double montant,int Bank_Acount_id,int User_ID)
+	public void verser(float montant,int Bank_Acount_id,int User_ID)
 	{ 
 		BankAccount ba = consultercompte(Bank_Acount_id);
 		ba.setBalance(ba.getBalance()+montant);
@@ -44,7 +44,7 @@ public class OperationsService implements OperationInterface {
 	 * **/
 	 
 	@Override
-	public void retirer(double montant,int Bank_Acount_id,int User_ID)
+	public void retirer(float montant,int Bank_Acount_id,int User_ID)
 	{
 		BankAccount ba = consultercompte(Bank_Acount_id);
 		ba.setBalance(ba.getBalance()-montant);
@@ -78,7 +78,7 @@ public class OperationsService implements OperationInterface {
 		
 	}
 	@Override
-	public void UpdateBalance(int id, double balance) {
+	public void UpdateBalance(int id, float balance) {
 		CurrentAcount a = em.find(CurrentAcount.class, id);
 		System.out.println(a+" acacacaca");
 		//a.setStatus(true);

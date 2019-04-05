@@ -44,7 +44,7 @@ public abstract class User implements Serializable {
 	@Column(name = "User_Phone")
 	protected String phone;
 	@Column(name = "User_Salary")
-	protected Double Salary;
+	protected float Salary;
 	@Column(name = "Hiring_Date")
 	protected Date HiringDate;
 	@Column(name = "User_title")
@@ -81,16 +81,6 @@ public abstract class User implements Serializable {
 	private String CampanyName;
 	@Column(name = "User_Position")
 	private String Position;
-	@Column(name="blocked")
-	private boolean blocked;
-	
-	public boolean getBlocked() {
-		return blocked;
-	}
-
-	public void setBlocked(boolean blocked) {
-		this.blocked = blocked;
-	}
 
 	public String getPosition() {
 		return Position;
@@ -203,11 +193,11 @@ public abstract class User implements Serializable {
 		this.phone = phone;
 	}
 
-	public Double getSalary() {
+	public float getSalary() {
 		return Salary;
 	}
 
-	public void setSalary(Double salary) {
+	public void setSalary(float salary) {
 		Salary = salary;
 	}
 
@@ -350,6 +340,7 @@ public abstract class User implements Serializable {
 				+ ", job=" + job + ", employer=" + employer + ", professionCategory=" + professionCategory
 				+ ", CampanyName=" + CampanyName + ", Position=" + Position + ", agency=" + agency + "]";
 	}
+
 
 
 

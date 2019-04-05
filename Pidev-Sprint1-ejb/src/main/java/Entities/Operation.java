@@ -17,12 +17,16 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 public class Operation implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int NumeroOperation;
 	private Date DateOperation;
 	private String operationType;
-	private double Montant;
+	private float Montant;
 	@Override
 	public String toString() {
 		return "Operation [NumeroOperation=" + NumeroOperation + ", DateOperation=" + DateOperation + ", operationType="
@@ -60,11 +64,11 @@ public class Operation implements Serializable {
 		DateOperation = dateOperation;
 	}
 
-	public double getMontant() {
+	public float getMontant() {
 		return Montant;
 	}
 
-	public void setMontant(double montant) {
+	public void setMontant(float montant) {
 		Montant = montant;
 	}
 
@@ -89,7 +93,7 @@ public class Operation implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Operation(Date dateOperation, double montant, BankAccount bankaccount, Agent agent) {
+	public Operation(Date dateOperation, float montant, BankAccount bankaccount, Agent agent) {
 		super();
 		DateOperation = dateOperation;
 		Montant = montant;

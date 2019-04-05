@@ -19,7 +19,7 @@ public class RealEstateCredit extends Loan{
 		return "RealEstateCredit [EstateRequest=" + EstateRequest + ", id=" + id + ", LoanSum=" + LoanSum
 				+ ", Duration=" + Duration + ", StartDate=" + StartDate + ", EndDate=" + EndDate + ", InterestRate="
 				+ InterestRate + ", FileExpenses=" + FileExpenses + ", RefundMode=" + RefundMode + ", GracePeriod="
-				+ GracePeriod + ", guarantor=" + guarantor + ", gurantee=" + gurantee + "]";
+				+ GracePeriod + "]";
 	}
 public RealEstateRequest getEstateRequest() {
 		return EstateRequest;

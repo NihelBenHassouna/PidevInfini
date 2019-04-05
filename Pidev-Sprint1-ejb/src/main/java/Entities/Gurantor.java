@@ -18,8 +18,24 @@ public class Gurantor implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	@Column(name="Cin") 
+	@Column(name="id") 
 	private int  id;
+	@Column(name="cin")
+	private int cin;
+	@Column(name="job")
+	private String job;
+	public int getCin() {
+		return cin;
+	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job) {
+		this.job = job;
+	}
+	public void setCin(int cin) {
+		this.cin = cin;
+	}
 	@Column(name="FirstName")
 	private String FirstName;
 	@Column(name="LastName")
@@ -29,22 +45,13 @@ public class Gurantor implements Serializable{
 	@Column(name="PhoneNumber")
 	private String phoneNumber;
 	@Column(name="Salary")
-	private Double Salary;
+	private float Salary;
 	@Column(name="Gender")
 	private String Gender;
 	@Column(name="Gurantor_HomeAdress")
 	private String HomeAdress;
 	@Column(name="Gurantor_WorkAdress")
 	private String WorkAdress;
-	@OneToOne(mappedBy="guarantor")
-	private Loan loan;
-	public Loan getLoan() {
-		return loan;
-	}
-	public void setLoan(Loan loan) {
-		this.loan = loan;
-	}
-	
 
 	public String getFirstName() {
 		return FirstName;
@@ -70,10 +77,10 @@ public class Gurantor implements Serializable{
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public Double getSalary() {
+	public float getSalary() {
 		return Salary;
 	}
-	public void setSalary(Double salary) {
+	public void setSalary(float salary) {
 		Salary = salary;
 	}
 	public String getGender() {
@@ -101,7 +108,7 @@ public class Gurantor implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Gurantor(String firstName, String lastName, String email, String phoneNumber, Double salary, String gender,
+	public Gurantor(String firstName, String lastName, String email, String phoneNumber, float salary, String gender,
 			String homeAdress, String workAdress) {
 		super();
 		FirstName = firstName;
@@ -116,5 +123,13 @@ public class Gurantor implements Serializable{
 	public Gurantor() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "Gurantor [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", Email=" + Email
+				+ ", phoneNumber=" + phoneNumber + ", Salary=" + Salary + ", Gender=" + Gender + ", HomeAdress="
+				+ HomeAdress + ", WorkAdress=" + WorkAdress + "]";
+	}
+
+	
 	
 }

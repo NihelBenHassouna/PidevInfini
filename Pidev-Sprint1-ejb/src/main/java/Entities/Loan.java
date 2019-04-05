@@ -8,8 +8,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +16,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
@@ -30,7 +28,7 @@ public abstract class Loan implements Serializable{
 	@Column(name="Loan_ID") 
 	protected int  id;
 	@Column(name="LoanSum") 
-	protected Double LoanSum;
+	protected float LoanSum;
 	@Column(name="Duration") 
 	protected int  Duration;
 	@Column(name="Start_Date")
@@ -38,20 +36,15 @@ public abstract class Loan implements Serializable{
 	@Column(name="End_Date")
 	protected Date EndDate;
 	@Column(name="InterestRate") 
-	protected int InterestRate;
+	protected float InterestRate;
 	@Column(name="FileExpenses") 
-	protected Double FileExpenses;
+	protected float FileExpenses;
 	@Column(name="Refund_Mode")
-	@Enumerated(EnumType.STRING)
-	protected Frequency RefundMode;
+	protected String RefundMode;
 	@Column(name="GracePeriod") 
 	protected int GracePeriod;
-	@OneToOne
-	Gurantor guarantor;
-	
-	
 	@Column(name="Frequency_Amount") 
-	private Double FrequencyAmount;
+	private float FrequencyAmount;
 	@ManyToOne
 	private CurrentAcount currentAccount;
 	@OneToMany(mappedBy="loan", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
@@ -64,8 +57,8 @@ public abstract class Loan implements Serializable{
 		GracePeriod = gracePeriod;
 	}
 
-	@OneToOne
-	Gurantee gurantee;
+	
+	
 	
 	public List<Penalty> getPenalties() {
 		return penalties;
@@ -74,18 +67,7 @@ public abstract class Loan implements Serializable{
 		this.penalties = penalties;
 	}
 	
-	public Gurantor getGuarantor() {
-		return guarantor;
-	}
-	public void setGuarantor(Gurantor guarantor) {
-		this.guarantor = guarantor;
-	}
-	public Gurantee getGurantee() {
-		return gurantee;
-	}
-	public void setGurantee(Gurantee gurantee) {
-		this.gurantee = gurantee;
-	}
+
 	public CurrentAcount getCurrentAccount() {
 		return currentAccount;
 	}
@@ -101,8 +83,8 @@ public abstract class Loan implements Serializable{
 	public Loan() {
 		super();
 	}
-	public Loan(Double loanSum, int duration, Date startDate, Date endDate, int interestRate, Double fileExpenses,
-			Frequency refundMode, Double frequencyAmount) {
+	public Loan(float loanSum, int duration, Date startDate, Date endDate, int interestRate, float fileExpenses,
+			String refundMode, float frequencyAmount) {
 		super();
 		LoanSum = loanSum;
 		Duration = duration;
@@ -119,10 +101,10 @@ public abstract class Loan implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Double getLoanSum() {
+	public float getLoanSum() {
 		return LoanSum;
 	}
-	public void setLoanSum(Double loanSum) {
+	public void setLoanSum(float loanSum) {
 		LoanSum = loanSum;
 	}
 	public int getDuration() {
@@ -143,28 +125,28 @@ public abstract class Loan implements Serializable{
 	public void setEndDate(Date endDate) {
 		EndDate = endDate;
 	}
-	public int getInterestRate() {
+	public float getInterestRate() {
 		return InterestRate;
 	}
-	public void setInterestRate(int interestRate) {
-		InterestRate = interestRate;
+	public void setInterestRate(float f) {
+		InterestRate = f;
 	}
-	public Double getFileExpenses() {
+	public float getFileExpenses() {
 		return FileExpenses;
 	}
-	public void setFileExpenses(Double fileExpenses) {
+	public void setFileExpenses(float fileExpenses) {
 		FileExpenses = fileExpenses;
 	}
-	public Frequency getRefundMode() {
+	public String getRefundMode() {
 		return RefundMode;
 	}
-	public void setRefundMode(Frequency refundMode) {
+	public void setRefundMode(String refundMode) {
 		RefundMode = refundMode;
 	}
-	public Double getFrequencyAmount() {
+	public float getFrequencyAmount() {
 		return FrequencyAmount;
 	}
-	public void setFrequencyAmount(Double frequencyAmount) {
+	public void setFrequencyAmount(float frequencyAmount) {
 		FrequencyAmount = frequencyAmount;
 	}
 	

@@ -21,43 +21,61 @@ public class Gurantee implements Serializable{
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	@Column	(name="Guarantee_id")
 	private int id;
-	@Column(name="GuarantedBalance")
-	private  Double Balance;
+	@Column(name="GuaranteeValue")
+	private  float value;
 	@Column(name="GuaranteeType")
-	@Enumerated(EnumType.STRING)
-	private GuranteeType Type;
-	@OneToOne(mappedBy="gurantee")
-	private Loan loan;
+	private String Type;
+	@Column(name="GuaranteeAddress")
+	String address;
+	@Column(name="GuaranteeNmber")
+	String number;
+	@Column(name="CarModel")
+	String model;
+	
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Double getBalance() {
-		return Balance;
+	public float getValue() {
+		return value;
 	}
-	public void setBalance(Double balance) {
-		Balance = balance;
+	public void setValue(float value) {
+		this.value = value;
 	}
-	public GuranteeType getType() {
-		return Type;
-	}
-	public void setType(GuranteeType type) {
-		Type = type;
-	}
+
+
 	@Override
 	public String toString() {
-		return "Gurantee [id=" + id + ", Balance=" + Balance + ", Type=" + Type + "]";
+		return "Gurantee [id=" + id + ", value=" + value + ", Type=" + Type + ", address=" + address + ", number="
+				+ number + ", model=" + model + "]";
 	}
-	public Gurantee() {
-		super();
+	public String getType() {
+		return Type;
 	}
-	public Gurantee(Double balance, GuranteeType type) {
-		super();
-		Balance = balance;
+	public void setType(String type) {
 		Type = type;
 	}
-	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
 
 }

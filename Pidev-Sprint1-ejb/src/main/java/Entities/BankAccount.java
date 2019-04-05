@@ -28,13 +28,13 @@ public abstract class BankAccount implements Serializable{
    @Column(name = "Rib")
    private String Rib;
    @Column(name = "Balance")
-   private Double Balance;
+   private float Balance;
    @Column(name="Creation_Date")
 	private Date Creation ;
    @Column(name="Close_Date")
 	private Date Close_Date ;
 	@Column(name="Account_Status")
-	private boolean Status;
+	private boolean Status=false;
 	@ManyToOne
 	private User user;
 	/*  @OneToMany( mappedBy = "SenderAccount")
@@ -94,10 +94,10 @@ public abstract class BankAccount implements Serializable{
 	public void setRib(String rib) {
 		Rib = rib;
 	}
-	public Double getBalance() {
+	public float getBalance() {
 		return Balance;
 	}
-	public void setBalance(Double balance) {
+	public void setBalance(float balance) {
 		Balance = balance;
 	}
 	public Date getCreation() {
@@ -126,7 +126,7 @@ public abstract class BankAccount implements Serializable{
 	public BankAccount() {
 		super();
 	}
-	public BankAccount(String rib, Double balance, Date creation, Date close_Date, boolean status) {
+	public BankAccount(String rib, float balance, Date creation, Date close_Date, boolean status) {
 		super();
 		Rib = rib;
 		Balance = balance;

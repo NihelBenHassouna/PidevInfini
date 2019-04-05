@@ -20,7 +20,7 @@ public class AgentService implements AgentInterface{
 	public AgentService(){}
 	@Override
 	public boolean AgentExist(String login, String password) {
-		String sql ="Select count(d) from User d where Password=:password and Login=:login";
+		String sql ="Select count(d) from User d where UserType='Agent' and Password=:password and Login=:login";
 		Query q =em.createQuery(sql);
 		q.setParameter("login", login);
 		q.setParameter("password", password);

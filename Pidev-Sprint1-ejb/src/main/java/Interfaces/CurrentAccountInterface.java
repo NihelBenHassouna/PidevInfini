@@ -8,4 +8,5 @@ import Entities.CurrentAcount;
 @Remote
 public interface CurrentAccountInterface {
 public List<CurrentAcount> DisplayAccount();
+public CurrentAcount getidCurrentAcount(int id_user);
 }

@@ -15,21 +15,28 @@ public class CurrentAcount extends BankAccount{
 
 	private static final long serialVersionUID = 1L;
 	@Column(name = "Overdraftauth")
-	private Double Overdradtauth;
+	private float Overdradtauth;
+	@Column(name = "salary")
+	private float salary;
+	public float getSalary() {
+		return salary;
+	}
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 	@OneToMany(mappedBy="currentAccount", cascade = {CascadeType.ALL})
 	private List<Loan> loans = new ArrayList<>();
-	public Double getOverdradtauth() {
+	public float getOverdradtauth() {
 		return Overdradtauth;
 	}
-	public void setOverdradtauth(Double overdradtauth) {
+	public void setOverdradtauth(float overdradtauth) {
 		Overdradtauth = overdradtauth;
 	}
+
+
 	@Override
 	public String toString() {
-		return "CurrentAcount [Overdradtauth=" + Overdradtauth + ", getId()=" + getId() + ", getRib()=" + getRib()
-				+ ", getBalance()=" + getBalance() + ", getCreation()=" + getCreation() + ", getClose_Date()="
-				+ getClose_Date() + ", isStatus()=" + isStatus() + ", toString()=" + super.toString() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + "]";
+		return "CurrentAcount [Overdradtauth=" + Overdradtauth + ", salary=" + salary + "]";
 	}
 	public List<Loan> getLoans() {
 		return loans;
@@ -40,7 +47,7 @@ public class CurrentAcount extends BankAccount{
 	public CurrentAcount() {
 		super();
 	}
-	public CurrentAcount(Double overdradtauth) {
+	public CurrentAcount(float overdradtauth) {
 		super();
 		Overdradtauth = overdradtauth;
 	}
