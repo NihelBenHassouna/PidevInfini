@@ -24,7 +24,7 @@ public class AdministratorService implements AdministratorInterface {
 
 	@Override
 	public Admin AdminLogin(String login, String password) {
-		Query q = em.createQuery("select a from Admin a where a.Admin_Login=:login and a.Admin_Password=:password").setParameter("login", login).setParameter("password",password);
+		Query q = em.createQuery("select a from Admin a where a.Login=:login and a.Password=:password").setParameter("login", login).setParameter("password",password);
 		Admin a = new Admin();
 		a= (Admin) q.getSingleResult();
 		return a;
@@ -33,7 +33,7 @@ public class AdministratorService implements AdministratorInterface {
 	@Override
 	public boolean AdminExist(String login, String password) {
 		
-			String sql ="Select count(d) from Admin d where Admin_Login=:login and Admin_Password=:password";
+			String sql ="Select count(d) from Admin d where d.Login=:login and d.Password=:password";
 			Query q =em.createQuery(sql);
 			q.setParameter("login", login);
 			q.setParameter("password", password);
@@ -47,7 +47,7 @@ public class AdministratorService implements AdministratorInterface {
 	@Override
 	public Admin GetAdminByLoginAndPassword(String login, String password) {
 		TypedQuery<Admin> query = 
-		em.createQuery("select e from Admin e WHERE e.login=:login and e.password=:password ", Admin.class); 
+		em.createQuery("select e from Admin e WHERE e.Login=:login and e.Password=:password ", Admin.class); 
 		query.setParameter("login", login); 
 		query.setParameter("password", password); 
 		Admin admin = null; 

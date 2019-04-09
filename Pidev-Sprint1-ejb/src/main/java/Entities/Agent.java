@@ -44,18 +44,22 @@ public List<Appointement> getAppoints() {
 		Bonus = bonus;
 	}
 
-
-
-	
 	@Override
 	public String toString() {
-		return "Agent [Bonus=" + Bonus + ", id=" + id + ", Cin=" + Cin
-				+ ", FirstName=" + FirstName + ", LastName=" + LastName + ", Email=" + Email + ", phone=" + phone
-				+ ", Salary=" + Salary + ", HiringDate=" + HiringDate + ", Title=" + Title + ", Login=" + Login
-				+ ", Password=" + Password + ", ConfirmedPassword=" + ConfirmedPassword + ", HomeAdress=" + HomeAdress
-				+ ", WorkAdress=" + WorkAdress + ", url_image=" + url_image + ", Signature=" + Signature
-				+ ", BirthDate=" + BirthDate + "]";
+		return "User [id=" + id + ", UserType=" + UserType + ", Cin=" + Cin + ", FirstName=" + FirstName + ", LastName="
+				+ LastName + ", Email=" + Email + ", phone=" + phone + ", Salary=" + Salary + ", HiringDate="
+				+ HiringDate + ", Title=" + Title + ", Login=" + Login + ", Password=" + Password
+				+ ", ConfirmedPassword=" + ConfirmedPassword + ", HomeAdress=" + HomeAdress + ", WorkAdress="
+				+ WorkAdress + ", url_image=" + url_image + ", Signature=" + Signature + ", BirthDate=" + BirthDate
+				+ ", MaritalStatus=" + MaritalStatus + ", KidsNumber=" + KidsNumber + ", Seniority=" + Seniority
+				+ ", job=" + job + ", employer=" + employer + ", professionCategory=" + professionCategory
+				+ ", CampanyName=" + CampanyName + ", Position=" + Position + ", agency=" + agency + "]";
 	}
+
+	
+
+
+
 	public Agent() {
 		super();
 	}

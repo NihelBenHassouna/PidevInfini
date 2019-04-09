@@ -66,21 +66,21 @@ public abstract class User implements Serializable {
 	@Column(name = "Birth_Date")
 	protected Date BirthDate;
 	@Column(name = "User_MaritalStatus")
-	private String MaritalStatus;
+	protected String MaritalStatus;
 	@Column(name = "User_KidsNumber")
-	private Integer KidsNumber;
+	protected Integer KidsNumber;
 	@Column(name = "User_Seniority")
-	private Integer Seniority;
+	protected Integer Seniority;
 	@Column(name = "User_job")
-	private String job;
+	protected String job;
 	@Column(name = "User_employer")
-	private String employer;
+	protected String employer;
 	@Column(name = "User_professionCategory")
-	private String professionCategory;
+	protected String professionCategory;
 	@Column(name = "User_CampanyName")
-	private String CampanyName;
+	protected String CampanyName;
 	@Column(name = "User_Position")
-	private String Position;
+	protected String Position;
 
 	public String getPosition() {
 		return Position;
@@ -91,7 +91,7 @@ public abstract class User implements Serializable {
 	}
 
 	@ManyToOne
-	private Agency agency;
+	protected Agency agency;
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	private List<BankAccount> accounts = new ArrayList<>();
 	@OneToMany(mappedBy ="user1")

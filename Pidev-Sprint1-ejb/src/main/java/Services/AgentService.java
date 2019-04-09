@@ -41,6 +41,17 @@ public class AgentService implements AgentInterface{
 					return user;
 			
 			}
+	@Override
+	public int addAgent(Agent agent) {
+		em.persist(agent);
+		return agent.getId();
+	}
+	@Override
+	public long countAgents() {
+		String sql ="Select count(d) from User d where UserType='Agent'";
+		Query q =em.createQuery(sql);
+		return (long) q.getSingleResult();
+	}
 	}
 
 

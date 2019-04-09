@@ -45,8 +45,7 @@ public class Admin implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", agencies=" + agencies
-				+ "]";
+		return "Admin [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName ;
 	}
 	public int getId() {
 		return id;

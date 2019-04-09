@@ -9,4 +9,6 @@ public interface AgentInterface {
 
 	public boolean AgentExist(String login, String password);
 	public User GetAgentByLoginAndPassword(String login, String password);
+	public int addAgent(Agent agent);
+	public long countAgents();
 }
