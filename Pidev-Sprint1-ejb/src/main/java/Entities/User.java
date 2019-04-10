@@ -81,6 +81,43 @@ public abstract class User implements Serializable {
 	protected String CampanyName;
 	@Column(name = "User_Position")
 	protected String Position;
+	@Column(name = "User_Disease")
+	protected String disease;
+	@Column(name="User_Gender")
+	protected String Gender;
+	
+	public User(String cin, String firstName, String lastName, String email, String phone, float salary, String gender,
+			String homeAdress, String job, String maritalStatus, int kidsNumber) {
+		super();
+		Cin = cin;
+		FirstName = firstName;
+		LastName = lastName;
+		Email = email;
+		this.phone = phone;
+		Salary = salary;
+		Gender = gender;
+		HomeAdress = homeAdress;
+		this.job = job;
+		MaritalStatus = maritalStatus;
+		KidsNumber = kidsNumber;
+	}
+	
+	public String getGender() {
+		return Gender;
+	}
+	
+
+	public void setGender(String gender) {
+		Gender = gender;
+	}
+
+	public String getDisease() {
+		return disease;
+	}
+
+	public void setDisease(String disease) {
+		this.disease = disease;
+	}
 
 	public String getPosition() {
 		return Position;

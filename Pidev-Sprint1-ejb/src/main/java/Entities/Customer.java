@@ -18,7 +18,8 @@ public class Customer extends User{
 	private static final long serialVersionUID = 1L;
 
 	
-	
+	@Column(name="typeOfCredit")
+	private String typeOfCredit;
 	
 	@OneToMany(mappedBy="customer")
 	private List<Appointement> appoints;
@@ -39,6 +40,12 @@ public class Customer extends User{
 
 	public Customer() {
 		super();
+	}
+	public String getTypeOfCredit() {
+		return typeOfCredit;
+	}
+	public void setTypeOfCredit(String typeOfCredit) {
+		this.typeOfCredit = typeOfCredit;
 	}
 
 
