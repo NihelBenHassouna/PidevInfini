@@ -44,7 +44,7 @@ public abstract class Loan implements Serializable{
 	@Column(name="GracePeriod") 
 	protected int GracePeriod;
 	@Column(name="Frequency_Amount") 
-	private float FrequencyAmount;
+	protected float FrequencyAmount;
 	@ManyToOne
 	private CurrentAcount currentAccount;
 	@OneToMany(mappedBy="loan", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)

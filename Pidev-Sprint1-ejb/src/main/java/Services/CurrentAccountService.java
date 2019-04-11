@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import Entities.CurrentAcount;
@@ -33,5 +34,19 @@ public class CurrentAccountService implements CurrentAccountInterface{
 				  return query.getSingleResult();
 	}
 	
+	@Override
+	public void updateCurrentAccount(int id, float Balance) {
+		 Query query = em.createQuery("update CurrentAcount e set e.Balance=:Balance where e.id=:id");
+		 query.setParameter("Balance",Balance);	
+		 query.setParameter("id",id);
+			int modified = query.executeUpdate();
+			if(modified == 1){
+				System.out.println("successfully updated");
+			}else{
+				System.out.println("failed to update");
+			}
+	
+		
+	}
 
 }
