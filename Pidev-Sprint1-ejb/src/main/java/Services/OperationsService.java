@@ -12,6 +12,7 @@ import Entities.Agency;
 import Entities.BankAccount;
 import Entities.CurrentAcount;
 import Entities.Operation;
+import Entities.SavingsAccount;
 import Interfaces.OperationInterface;
 @Stateless
 public class OperationsService implements OperationInterface {
@@ -53,9 +54,48 @@ public class OperationsService implements OperationInterface {
 	
 
 	@Override
+	public SavingsAccount consulterSavingsAccount(int Bank_Acount_id) {
+		SavingsAccount ba=em.find(SavingsAccount.class,Bank_Acount_id);
+		
+		return ba;
+
+	}
+	@Override
+	public boolean boolconsulterSavingsAccount(int Bank_Acount_id) {
+		SavingsAccount ba=em.find(SavingsAccount.class,Bank_Acount_id);
+		if(ba.equals(null))
+		{
+			return false;
+		}
+		else
+		{
+		return true;
+		}
+		
+
+
+	}
+	@Override
+	public boolean boolconsulterCurrentAccount(int Bank_Acount_id) {
+		CurrentAcount ba=em.find(CurrentAcount.class,Bank_Acount_id);
+		if(ba.equals(null)){
+			return false;
+		}
+		else{
+		return true;
+		}
+	}
+	@Override
+	public CurrentAcount consulterCurrentAccount(int Bank_Acount_id) {
+		CurrentAcount ba=em.find(CurrentAcount.class,Bank_Acount_id);
+		
+		return ba;
+
+	}
+	@Override
 	public BankAccount consultercompte(int Bank_Acount_id) {
 		BankAccount ba=em.find(BankAccount.class,Bank_Acount_id);
-		if(ba==null) throw new RuntimeException("Compte introuvable");
+		
 		return ba;
 
 	}
@@ -66,11 +106,14 @@ public class OperationsService implements OperationInterface {
 		req.setParameter("x", Bank_Acount_id); 
 		return req.getResultList();
 	}
+	
 	@Override
 	public void addOperation(Operation op) {
 	//	BankAccount ba=consultercompte(op.getBankaccount().getId());
 		
 		op.setDateOperation(new Date());
+		System.out.println(op.getDateOperation());
+
 		em.persist(op);
 		int i =1;
 		String test = "";
@@ -80,6 +123,7 @@ public class OperationsService implements OperationInterface {
 	@Override
 	public void UpdateBalance(int id, float balance) {
 		CurrentAcount a = em.find(CurrentAcount.class, id);
+		
 		System.out.println(a+" acacacaca");
 		//a.setStatus(true);
 		a.setBalance(a.getBalance()+balance);
@@ -87,5 +131,61 @@ public class OperationsService implements OperationInterface {
 		
 		
 	}
+	@Override
+	public void UpdateSaBalance(int id, float balance) {
+		SavingsAccount a = em.find(SavingsAccount.class, id);
+		
+		System.out.println(a+" acacacaca");
+		//a.setStatus(true);
+		a.setBalance(a.getBalance()+balance);
+	      em.merge(a);
+		
+		
+	}
+	@Override
+	public void Update1SaBalance(int id, float balance) {
+		SavingsAccount a = em.find(SavingsAccount.class, id);
+		
+		System.out.println(a+" acacacaca");
+		//a.setStatus(true);
+		a.setBalance(a.getBalance()-balance);
+	      em.merge(a);
+		
+		
+	}
+	public List<Operation> consulterAllOperations() {
+		List<Operation> Operations=em.createQuery("from Operation", Operation.class).getResultList();
+		return Operations;
+		
+	}
+	
+	@Override
+	public void Update1Balance(int id, float balance) {
+		CurrentAcount a = em.find(CurrentAcount.class, id);
+		System.out.println(a+" acacacaca");
+		//a.setStatus(true);
+		a.setBalance(a.getBalance()-balance);
+	      em.merge(a);
+		
+	}
+	@Override
+	public int nombreversement(int bankacountid) {
+		Query query=em.createQuery("Select count (*) from Operation where Bank_Acount_id=:x and operationType LIKE :y");
+		query.setParameter("x",bankacountid);
+		query.setParameter("y","versement");
+		int a =((Number)query.getSingleResult()).intValue();
+		return a;
+	}
+	@Override
+	public int nombreretrait(int bankacountid) {
+		Query query=em.createQuery("Select count (*) from Operation where Bank_Acount_id=:x and operationType LIKE :y");
+		query.setParameter("x",bankacountid);
+		query.setParameter("y","retrait");
+		int a =((Number)query.getSingleResult()).intValue();
+		return a;
+	}
+	
+	
+	
 
 }
