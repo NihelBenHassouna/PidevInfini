@@ -90,6 +90,13 @@ public class Claim implements Serializable{
 	public Claim() {
 		super();
 	}
+	public Claim(String object2, String content2, Date creation2, String status2) {
+		this.Object=object2;
+		this.Content=content2;
+		this.Creation=creation2;
+		this.Status=status2;
+				
+	}
 	@Override
 	public String toString() {
 		return "Claim [APK=" + APK + ", agent1=" + agent1 + ", customer1=" + customer1 + ", Content=" + Content

@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 
 import Entities.Admin;
 import Entities.Agency;
+import Entities.Claim;
 import Entities.User;
 import Interfaces.AdminInterface;
 
@@ -118,6 +119,11 @@ public class AdminAgencyService implements AdminInterface{
 		
 		return true;
 		
+	}
+	@Override
+	public List<Claim> findAllClaims() {
+		TypedQuery<Claim> query= em.createQuery("select a  from Claim a", Claim.class);
+		return query.getResultList();
 	}}
 
 

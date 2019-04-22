@@ -18,8 +18,15 @@ public class CurrentAccountService implements CurrentAccountInterface{
 	EntityManager em;
 
 	@Override
-	public List<CurrentAcount> DisplayAccount() {
-		TypedQuery<CurrentAcount> query= em.createQuery("select a from CurrentAcount a", CurrentAcount.class);
+	public List<CurrentAcount> DisplayActiveAccount() {
+		TypedQuery<CurrentAcount> query= em.createQuery("select a from CurrentAcount a where Status = 1", CurrentAcount.class);
+		return query.getResultList();
+		
+		
+	}
+	@Override
+	public List<CurrentAcount> DisplayInActiveAccount() {
+		TypedQuery<CurrentAcount> query= em.createQuery("select a from CurrentAcount a where Status =0", CurrentAcount.class);
 		return query.getResultList();
 		
 		

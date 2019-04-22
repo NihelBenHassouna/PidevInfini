@@ -7,7 +7,8 @@ import Entities.CurrentAcount;
 
 @Remote
 public interface CurrentAccountInterface {
-public List<CurrentAcount> DisplayAccount();
+public List<CurrentAcount> DisplayActiveAccount();
 public CurrentAcount getidCurrentAcount(int id_user);
 public void updateCurrentAccount(int id,float amount); 
+public List<CurrentAcount> DisplayInActiveAccount();
 }

@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 
 import Entities.Admin;
 import Entities.Agency;
+import Entities.Claim;
 import Entities.User;
 
 
@@ -18,6 +19,7 @@ public interface AdminInterface {
 	public void affecterUserAgency(int id_user,int id_agence);
 	public int addUser(User user);
 	public List<Agency> findAllAgencies();
+	public List<Claim> findAllClaims();
 	public int getNombreUserByAgenncy(int id_agence);
 	public Agency getAgencyById(int id_agence);
 	public Agency getAgencyByEmail(String email);
