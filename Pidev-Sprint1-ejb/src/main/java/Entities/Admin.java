@@ -75,4 +75,5 @@ public class Admin implements Serializable{
 		agency.setAdmin(this);
 		this.agencies.add(agency);
 	}
+	
 }
