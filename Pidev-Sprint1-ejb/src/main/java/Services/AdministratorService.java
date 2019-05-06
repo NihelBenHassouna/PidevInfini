@@ -1,5 +1,6 @@
 package Services;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
@@ -14,6 +15,7 @@ import Interfaces.AdministratorInterface;
 
 @Stateless
 @Remote(AdministratorInterface.class)
+@LocalBean
 public class AdministratorService implements AdministratorInterface {
 
 	public AdministratorService() {
