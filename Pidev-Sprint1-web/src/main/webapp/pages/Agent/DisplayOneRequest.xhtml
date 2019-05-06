@@ -1,0 +1,215 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Accueil" />
+
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+		<h:panelGroup>
+			<h:form>
+					
+				<h:outputText
+					value=" Details about the Request" />
+			</h:form>	
+		</h:panelGroup>
+		<br></br> <br></br> 
+		<h:panelGroup columns="2">
+			<h:form>
+			<h:outputText
+					value=" User Detail" />
+				<h:dataTable value="#{requestBean.requ}" var="req" border="1">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value=" Name" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.firstName} #{requestBean.requ.user1.lastName}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Title" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.title}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Marital Status" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.maritalStatus}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Kids Number" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.kidsNumber}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Professional Category" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.professionCategory}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Disease" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.disease}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Job" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.job}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Salary" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.salary}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Hiring Date" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.hiringDate}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Employer" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.employer}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Seniority" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.seniority}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Position" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.user1.position}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Contract Duration" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.durationContract}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Contract Duration" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.durationContract}" />
+					</h:column>
+					</h:dataTable>
+					<br></br>
+					<h:outputText
+					value=" Request Detail" />
+					<h:dataTable value="#{requestBean.requ}" var="req" border="1">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value=" Project Value" />
+						</f:facet>
+						<h:outputText value=" #{req.projectValue}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Proprety Description" />
+						</f:facet>
+						<h:outputText value=" #{req.propretyDes}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Proprety Nature" />
+						</f:facet>
+						<h:outputText value=" #{req.propretyNature}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Proprety Adress" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.propretyAdress}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Seller Name" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.sellerName}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Land Area" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.landArea}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Covered Area" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.coveredArea}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Construction Date" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.constructionDate}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="OtherLoan" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.otherloan}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Other Loan Payment" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.anotherCreditPayment}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Other loan remaining time" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.anotherCreditRemainingTime}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Amount Request" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.amountRequest}" />
+					</h:column>
+						<h:column>
+						<f:facet name="header">
+							<h:outputText value="Desired Date" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.desiredPeriod}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Grace Period" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.gracePeriod}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Frequency" />
+						</f:facet>
+						<h:outputText value=" #{requestBean.requ.frequency}" />
+					</h:column>
+					<h:column>
+                    <h:commandButton  action="#{requestBean.chercher1(req.refRequest)}" value="Treat Request"/> 
+                     <h:commandButton  value="Set score"/>
+                     </h:column>
+					</h:dataTable>
+					 <h:commandLink value="Return" action="#{requestBean.allRequests()}" />
+					 
+			</h:form>
+		</h:panelGroup>
+	 
+	</ui:define>
+
+</ui:composition>

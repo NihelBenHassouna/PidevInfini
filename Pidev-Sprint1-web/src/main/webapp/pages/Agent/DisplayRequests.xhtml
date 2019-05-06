@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Accueil" />
+
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+		<h:panelGroup>
+			<h:form>
+				<h:outputText
+					value="Bonjour #{loginBean.user.firstName} #{loginBean.user.lastName}"/>
+					<br></br>
+					
+				<h:outputText
+					value=" your are in the Agent space" />
+			</h:form>	
+		</h:panelGroup>
+		<br></br>
+		<h:panelGroup columns="2">
+			<h:form>
+				<h:dataTable value="#{requestBean.requests}" var="req" border="1">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Reference" />
+						</f:facet>
+						<h:outputText value="#{req.refRequest}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="RealEstate Type" />
+			 			</f:facet>
+						<h:outputText value="#{req.typeEstate}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Request Date" />
+			 			</f:facet>
+						<h:outputText value="#{req.dateRequest}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+						<h:outputText value="See more details" /></f:facet>
+						
+                 <h:commandButton action="#{requestBean.chercher(req.refRequest)}"  value="Afficher"/> 
+                 </h:column>
+					     </h:dataTable>
+					<h:commandLink value="Déconnexion" action="#{loginBean.doLogout()}" />
+			</h:form>
+		</h:panelGroup>
+		   
+
+	</ui:define>
+
+</ui:composition>

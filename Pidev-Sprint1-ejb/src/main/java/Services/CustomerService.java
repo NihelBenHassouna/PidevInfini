@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import Entities.Agency;
 import Entities.Customer;
 import Entities.User;
 import Interfaces.CustomerInterface;
@@ -73,6 +72,15 @@ public class CustomerService implements CustomerInterface {
 		String sql ="Select count(d) from User d where UserType='Customer'";
 		Query q =em.createQuery(sql);
 		return (long) q.getSingleResult();
+	}
+
+
+	@Override
+	public Customer getCustomerByLoginAndPassword(String login, String password) {
+		Query q = em.createQuery("select a from Customer a where a.Login=:login and a.Password=:password").setParameter("login", login).setParameter("password",password);
+		Customer a = new Customer();
+		a= (Customer) q.getSingleResult();
+		return a;
 	}
 
 

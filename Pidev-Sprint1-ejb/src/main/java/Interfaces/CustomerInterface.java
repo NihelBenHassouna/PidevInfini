@@ -15,4 +15,5 @@ public interface CustomerInterface {
 	public List<User> displayCustomer();
 	public List<User> displayAgents();
 	public long countCustomers();
+	public Customer getCustomerByLoginAndPassword(String login, String password);
 }
