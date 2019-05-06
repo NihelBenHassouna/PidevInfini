@@ -9,5 +9,6 @@ import Entities.User;
 public interface UserInterface {
 	
 	public User getuserById(int id_user);
+	public User getUserByEmailAndPassword(String  Login,String Password);
 
 }
