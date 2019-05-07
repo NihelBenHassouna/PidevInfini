@@ -33,7 +33,7 @@ public class LoginBean implements Serializable{
 		
 
 		if (user != null && (user.getUserType().equals("Agent"))) {
-			navigateTo = "/pages/Agent/DisplayRequests?faces-redirect=true";
+			navigateTo = "/pages/test?faces-redirect=true";
 			loggedIn = true; 
 		}
 		
