@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +22,7 @@ import Interfaces.MicrocreditInterface;
 
 
 @Stateless
+@LocalBean
 public class microcreditService implements MicrocreditInterface {
 
 	@PersistenceContext(unitName = "Pidev-Sprint1-ejb")
@@ -33,8 +35,8 @@ public class microcreditService implements MicrocreditInterface {
 		em.persist(microcreditrequest);
 			Customer cus=em.find(Customer.class, id);
 			microcreditrequest.setUsers(cus);
-			
-			
+			microcreditrequest.setDateRequest(new java.util.Date());
+			microcreditrequest.setState("inprogress");
 			
 			return microcreditrequest.getId();
 		
@@ -651,6 +653,59 @@ public class microcreditService implements MicrocreditInterface {
 		
 		return sum;
 	} 
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public Double getAmountPaid() {
+		TypedQuery<Double> query = 
+				em.createQuery("select SUM(e.AmountPaid) from MicroCredit e ", Double.class);
+		
+		Double sum=0.0; 
+		try {
+			sum = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return sum;
+	} 
+	
+	
+	@Override
+	public Double getAmountStill() {
+		TypedQuery<Double> query = 
+				em.createQuery("select SUM(e.TotalAmount) from MicroCredit e", Double.class);
+		
+		Double sum=0.0; 
+		try {
+			sum = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return sum;
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

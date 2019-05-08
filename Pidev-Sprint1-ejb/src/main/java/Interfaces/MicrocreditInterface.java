@@ -62,4 +62,12 @@ public interface MicrocreditInterface {
 	public Double getAmountPaidForProfCred();
 	
 	
+	
+	
+	public Double getAmountPaid();
+	public Double getAmountStill();
+	
+	
+	
+	
 }
