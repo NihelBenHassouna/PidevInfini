@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
+import Entities.Agency;
 import Entities.Customer;
 import Entities.MicroCredit;
 import Entities.MicrocreditPayment;
@@ -697,8 +698,19 @@ public class microcreditService implements MicrocreditInterface {
 	
 	
 	
+	@Override
+	public List<MicrocreditRequest> SearchMicrocreditRequestByCustomerID(Customer  cust) {
+		TypedQuery<MicrocreditRequest> query= em.createQuery("select a from MicrocreditRequest a where a.users=:cust", MicrocreditRequest.class);
+		query.setParameter("cust",cust);
+		
+		return query.getResultList();
+	}
 	
-	
+	@Override
+	public void DeleteReq(int idReq) {
+     MicrocreditRequest req = em.find(MicrocreditRequest.class, idReq);
+		em.remove(req);
+		}
 	
 	
 	

@@ -66,8 +66,8 @@ public interface MicrocreditInterface {
 	
 	public Double getAmountPaid();
 	public Double getAmountStill();
-	
-	
+	public List<MicrocreditRequest> SearchMicrocreditRequestByCustomerID(Customer  cust);
+	public void DeleteReq(int idReq);
 	
 	
 }
