@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,169 +20,88 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "UserType"
-
-		)
-public abstract class User implements Serializable {
-
+@DiscriminatorColumn(
+	    name="UserType"
+	
+	    )
+public abstract class  User implements Serializable {
+  
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "User_ID")
-	protected int id;
-	@Column(name = "UserType",insertable=false,updatable=false)
-	protected String UserType;
-	@Column(name = "User_Cin")
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@Column(name="User_ID") 
+	protected int  id;
+	@Column(name="User_Cin")
 	protected String Cin;
-	@Column(name = "FirstName")
+	@Column(name="FirstName")
 	protected String FirstName;
-	@Column(name = "LastName")
+	@Column(name="LastName")
 	protected String LastName;
-	@Column(name = "User_Email")
+	@Column(name="User_Email")
 	protected String Email;
-	@Column(name = "User_Phone")
+	@Column(name="User_Phone")
 	protected String phone;
-	@Column(name = "User_Salary")
-	protected float Salary;
-	@Column(name = "Hiring_Date")
-	protected Date HiringDate;
-	@Column(name = "User_title")
-	protected String Title;
-	@Column(name = "User_Login")
-	protected String Login;
-	@Column(name = "User_Password")
-	protected String Password;
-	@Column(name = "User_ConfirmedPassword")
-	protected String ConfirmedPassword;
-	@Column(name = "User_HomeAdress")
-	protected String HomeAdress;
-	@Column(name = "User_WorkAdress")
-	protected String WorkAdress;
-	@Column(name = "User_Image")
-	protected String url_image;
-	@Column(name = "User_Signature")
-	protected String Signature;
-	@Column(name = "Birth_Date")
-	protected Date BirthDate;
-	@Column(name = "User_MaritalStatus")
-	protected String MaritalStatus;
-	@Column(name = "User_KidsNumber")
-	protected Integer KidsNumber;
-	@Column(name = "User_Seniority")
-	protected Integer Seniority;
-	@Column(name = "User_job")
-	protected String job;
-	@Column(name = "User_employer")
-	protected String employer;
-	@Column(name = "User_professionCategory")
-	protected String professionCategory;
-	@Column(name = "User_CampanyName")
-	protected String CampanyName;
-	@Column(name = "User_Position")
-	protected String Position;
-	@Column(name = "User_Disease")
-	protected String disease;
+	@Column(name="User_Salary")
+	protected Double Salary;
 	@Column(name="User_Gender")
 	protected String Gender;
+	@Column(name="User_Login")
+	protected String Login;
+	@Column(name="User_Password")
+	protected String Password;
+	@Column(name="User_ConfirmedPassword")
+	protected String ConfirmedPassword;
+	@Column(name="User_HomeAdress")
+	protected String HomeAdress;
+	@Column(name="User_WorkAdress")
+	protected String WorkAdress;
+	@Column(name="User_Image")
+	protected String url_image;
+	@Column(name="User_Signature")
+	protected String Signature;
+	@Column(name="Birth_Date")
+	protected Date BirthDate ;
+	@Column(name="Professional_Category")
+	private String Professional_Category;
+	@Column(name="employer")
+	private String employer;
+	@Column(name="Position")
+	private String Position;
+	@Column(name="User_Job")
+	private String Job;
+	@Column(name="User_MaritalStatus")
+	private String MaritalStatus;
+	@Column(name="User_KidsNumber")
+	private int KidsNumber;
+	@Column(name="User_ActivityArea")
+	private String ActivityArea;
+	@Column(name="RcRegister")
+	private Date RcRegister;
+	@Column(name="User_Nationality")
+	private String Nationality;
+	@Column(name="Hiring_Date")
+	protected Date HiringDate ;
+	@Column(name="Discharge_Date")
+	protected Date DischargeDate ;
 	
-	public User(String cin, String firstName, String lastName, String email, String phone, float salary, String gender,
-			String homeAdress, String job, String maritalStatus, int kidsNumber) {
-		super();
-		Cin = cin;
-		FirstName = firstName;
-		LastName = lastName;
-		Email = email;
-		this.phone = phone;
-		Salary = salary;
-		Gender = gender;
-		HomeAdress = homeAdress;
-		this.job = job;
-		MaritalStatus = maritalStatus;
-		KidsNumber = kidsNumber;
-	}
-	
-	public String getGender() {
-		return Gender;
-	}
-	
-
-	public void setGender(String gender) {
-		Gender = gender;
-	}
-
-	public String getDisease() {
-		return disease;
-	}
-
-	public void setDisease(String disease) {
-		this.disease = disease;
-	}
-
-	public String getPosition() {
-		return Position;
-	}
-
-	public void setPosition(String position) {
-		Position = position;
-	}
-
 	@ManyToOne
-	protected Agency agency;
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	private Agency agency;
+	@OneToMany(mappedBy="user", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
 	private List<BankAccount> accounts = new ArrayList<>();
-	@OneToMany(mappedBy ="user1")
-	private List<RealEstateRequest>requests=new ArrayList<>();
-	public String getJob() {
-		return job;
+	/*@OneToMany(mappedBy="user")
+	private List<Claim> claims = new ArrayList<>();*/
+	
+	public User() {
+		super();
 	}
-
-	public void setJob(String job) {
-		this.job = job;
-	}
-
-	public String getEmployer() {
-		return employer;
-	}
-
-	public void setEmployer(String employer) {
-		this.employer = employer;
-	}
-
-	public String getProfessionCategory() {
-		return professionCategory;
-	}
-
-	public void setProfessionCategory(String professionCategory) {
-		this.professionCategory = professionCategory;
-	}
-
-	public Integer getKidsNumber() {
-		return KidsNumber;
-	}
-
-	public void setKidsNumber(Integer kidsNumber) {
-		KidsNumber = kidsNumber;
-	}
-
-	public Integer getSeniority() {
-		return Seniority;
-	}
-
-	public void setSeniority(Integer seniority) {
-		Seniority = seniority;
-	}
-
-	public String getUserType() {
-		return UserType;
-	}
-
-	public void setUserType(String userType) {
-		UserType = userType;
-	}
-
+	
 
 	public int getId() {
 		return id;
@@ -230,28 +151,20 @@ public abstract class User implements Serializable {
 		this.phone = phone;
 	}
 
-	public float getSalary() {
+	public Double getSalary() {
 		return Salary;
 	}
 
-	public void setSalary(float salary) {
+	public void setSalary(Double salary) {
 		Salary = salary;
 	}
 
-	public Date getHiringDate() {
-		return HiringDate;
+	public String getGender() {
+		return Gender;
 	}
 
-	public void setHiringDate(Date hiringDate) {
-		HiringDate = hiringDate;
-	}
-
-	public String getTitle() {
-		return Title;
-	}
-
-	public void setTitle(String title) {
-		Title = title;
+	public void setGender(String gender) {
+		Gender = gender;
 	}
 
 	public String getLogin() {
@@ -318,6 +231,38 @@ public abstract class User implements Serializable {
 		BirthDate = birthDate;
 	}
 
+	public String getProfessional_Category() {
+		return Professional_Category;
+	}
+
+	public void setProfessional_Category(String professional_Category) {
+		Professional_Category = professional_Category;
+	}
+
+	public String getEmployer() {
+		return employer;
+	}
+
+	public void setEmployer(String employer) {
+		this.employer = employer;
+	}
+
+	public String getPosition() {
+		return Position;
+	}
+
+	public void setPosition(String position) {
+		Position = position;
+	}
+
+	public String getJob() {
+		return Job;
+	}
+
+	public void setJob(String job) {
+		Job = job;
+	}
+
 	public String getMaritalStatus() {
 		return MaritalStatus;
 	}
@@ -326,13 +271,52 @@ public abstract class User implements Serializable {
 		MaritalStatus = maritalStatus;
 	}
 
-
-	public String getCampanyName() {
-		return CampanyName;
+	public int getKidsNumber() {
+		return KidsNumber;
 	}
 
-	public void setCampanyName(String campanyName) {
-		CampanyName = campanyName;
+	public void setKidsNumber(int kidsNumber) {
+		KidsNumber = kidsNumber;
+	}
+
+	public String getActivityArea() {
+		return ActivityArea;
+	}
+
+	public void setActivityArea(String activityArea) {
+		ActivityArea = activityArea;
+	}
+
+	public Date getRcRegister() {
+		return RcRegister;
+	}
+
+	public void setRcRegister(Date rcRegister) {
+		RcRegister = rcRegister;
+	}
+
+	public String getNationality() {
+		return Nationality;
+	}
+
+	public void setNationality(String nationality) {
+		Nationality = nationality;
+	}
+
+	public Date getHiringDate() {
+		return HiringDate;
+	}
+
+	public void setHiringDate(Date hiringDate) {
+		HiringDate = hiringDate;
+	}
+
+	public Date getDischargeDate() {
+		return DischargeDate;
+	}
+
+	public void setDischargeDate(Date dischargeDate) {
+		DischargeDate = dischargeDate;
 	}
 
 	public Agency getAgency() {
@@ -351,46 +335,26 @@ public abstract class User implements Serializable {
 		this.accounts = accounts;
 	}
 
-
-
-
-	public List<RealEstateRequest> getRequests() {
-		return requests;
+	/*public List<Claim> getClaims() {
+		return claims;
 	}
 
-	public void setRequests(List<RealEstateRequest> requests) {
-		this.requests = requests;
-	}
+	public void setClaims(List<Claim> claims) {
+		this.claims = claims;
+	}*/
 
-	public User() {
-		super();
-	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", UserType=" + UserType + ", Cin=" + Cin + ", FirstName=" + FirstName + ", LastName="
-				+ LastName + ", Email=" + Email + ", phone=" + phone + ", Salary=" + Salary + ", HiringDate="
-				+ HiringDate + ", Title=" + Title + ", Login=" + Login + ", Password=" + Password
-				+ ", ConfirmedPassword=" + ConfirmedPassword + ", HomeAdress=" + HomeAdress + ", WorkAdress="
-				+ WorkAdress + ", url_image=" + url_image + ", Signature=" + Signature + ", BirthDate=" + BirthDate
-				+ ", MaritalStatus=" + MaritalStatus + ", KidsNumber=" + KidsNumber + ", Seniority=" + Seniority
-				+ ", job=" + job + ", employer=" + employer + ", professionCategory=" + professionCategory
-				+ ", CampanyName=" + CampanyName + ", Position=" + Position + ", agency=" + agency + "]";
+		return "User [id=" + id + ", Cin=" + Cin + ", FirstName=" + FirstName + ", LastName=" + LastName + ", Email="
+				+ Email + ", phone=" + phone + ", Salary=" + Salary + ", Gender=" + Gender + ", Login=" + Login
+				+ ", Password=" + Password + ", ConfirmedPassword=" + ConfirmedPassword + ", HomeAdress=" + HomeAdress
+				+ ", WorkAdress=" + WorkAdress + ", url_image=" + url_image + ", Signature=" + Signature
+				+ ", BirthDate=" + BirthDate + ", Professional_Category=" + Professional_Category + ", employer="
+				+ employer + ", Position=" + Position + ", Job=" + Job + ", MaritalStatus=" + MaritalStatus
+				+ ", KidsNumber=" + KidsNumber + ", ActivityArea=" + ActivityArea + ", RcRegister=" + RcRegister
+				+ ", Nationality=" + Nationality + ", HiringDate=" + HiringDate + ", DischargeDate=" + DischargeDate
+				+ ", agency=" + agency + ", accounts=" + accounts + "]";
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 }

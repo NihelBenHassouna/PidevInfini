@@ -2,77 +2,42 @@ package Services;
 
 import java.util.List;
 
-import javax.ejb.Remote;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import Entities.Admin;
 import Entities.Agent;
 import Entities.Claim;
 import Entities.Customer;
-import Entities.User;
 import Interfaces.AgentInterface;
 
-@Stateless
-@Remote(AgentInterface.class)
-public class AgentService implements AgentInterface{
-	@PersistenceContext(unitName = "Pidev-Sprint1-ejb")
-	EntityManager em;
-	public AgentService(){}
-	@Override
-	public boolean AgentExist(String login, String password) {
-		String sql ="Select count(d) from User d where UserType='Agent' and Password=:password and Login=:login";
-		Query q =em.createQuery(sql);
-		q.setParameter("login", login);
-		q.setParameter("password", password);
-		long count=(long) q.getSingleResult();
-		System.out.println("44444444444444444444444444444444444444 "+count);
-		return (count>0);
-	}
 
-	@Override
-	public User GetAgentByLoginAndPassword(String login, String password) {
-		TypedQuery<User> query = 
-				em.createQuery("select e from User e WHERE e.Login=:login and e.Password=:password ", User.class);
-				query.setParameter("login",login); 
-				query.setParameter("password",password); 
-				User user=null;
-					user = query.getSingleResult(); 
-					System.out.println("54545454545888547558  "+user);
-					return user;
-			
-			}
-	@Override
-	public int addAgent(Agent agent) {
-		em.persist(agent);
-		return agent.getId();
-	}
-	@Override
-	public long countAgents() {
-		String sql ="Select count(d) from User d where UserType='Agent'";
-		Query q =em.createQuery(sql);
-		return (long) q.getSingleResult();
-	}
+
+@Stateless
+@LocalBean
+public class AgentClaimService implements AgentInterface{
+	
+	@PersistenceContext(unitName = "Pidev-Sprint1-ejb")
+	
+	EntityManager em;
 	@Override
 	public int addClaim(Claim claim) {
-		/*// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		em.persist(claim);
 		System.out.println("Out of addClaim" + claim.getId());
-		return claim.getId();*/
-		return 0;
+		return claim.getId();
 	}
 
 	@Override
 	public void affecterClaimAgent(Agent agent, int id_claim) {
 
-		/*// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		//Agent agent = em.find(Agent.class, id_agent);
 		Claim claim = em.find(Claim.class, id_claim);
 	    claim.setAgent(agent);
-	    em.merge(claim);*/
+	    em.merge(claim);
 	}
 
 	@Override
@@ -118,14 +83,14 @@ public class AgentService implements AgentInterface{
 	public boolean updateClaim(Claim claim) {
 		// TODO Auto-generated method stub
 		
-		/*Claim cl = em.find(Claim.class, claim.getId()); 
+		Claim cl = em.find(Claim.class, claim.getId()); 
 		
 		cl.setCreation(claim.getCreation());
 		cl.setStatus(claim.getStatus());
 		cl.setTreatment_Date(claim.getTreatment_Date());
 		cl.setObject(claim.getObject());
 		cl.setContent(claim.getContent());
-		cl.setAgent(claim.getAgent());*/
+		cl.setAgent(claim.getAgent());
 		
 		return true;
 	}
@@ -146,6 +111,6 @@ public class AgentService implements AgentInterface{
 		return agent.getEmail();
 		
 	}
-	}
 
+}
 

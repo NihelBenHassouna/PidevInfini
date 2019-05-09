@@ -1,5 +1,6 @@
 package Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,37 +18,24 @@ public class Customer extends User{
 
 	private static final long serialVersionUID = 1L;
 
-	
-	@Column(name="typeOfCredit")
-	private String typeOfCredit;
-	
 	@OneToMany(mappedBy="customer")
-	private List<Appointement> appoints;
-	@OneToMany(mappedBy="customer1")
-	private List<Claim> claims;
+	private List<Claim> claims= new ArrayList<>();
+	
 	public List<Claim> getClaims() {
 		return claims;
 	}
 	public void setClaims(List<Claim> claims) {
-		this.claims = claims;
-	}
-	public List<Appointement> getAppoints() {
-		return appoints;
-	}
-	public void setAppoints(List<Appointement> appoints) {
-		this.appoints = appoints;
+		this.claims = claims ;
 	}
 
 	public Customer() {
 		super();
 	}
-	public String getTypeOfCredit() {
-		return typeOfCredit;
+	
+	@Override
+	public String toString() {
+		return "Customer [claims=" + claims + "]";
 	}
-	public void setTypeOfCredit(String typeOfCredit) {
-		this.typeOfCredit = typeOfCredit;
-	}
-
-
+	
 }
 	

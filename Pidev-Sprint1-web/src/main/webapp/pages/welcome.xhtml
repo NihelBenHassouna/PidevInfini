@@ -2,15 +2,147 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/template/template.xhtml">
+	template="/template/template.xhtml"
+    xmlns:p="http://xmlns.jcp.org/jsf/html">
+                
 
 	<ui:param name="page_name" value="Accueil" />
+	
 
 	<ui:define name="content">
-		<!-- BEGIN : TP1 JSF Introduction Login -->
-		
-		<!-- END :  TP3 JSF List Employes -->
-<body><h1>YOO</h1></body>
+
+		<h:panelGroup>
+			<h:form>
+				<h:commandLink value="Déconnexion" action="#{claimBean.doLogout()}" />
+			</h:form>
+		</h:panelGroup>
+  
+		<h:panelGroup columns="2">
+
+			<h:form>
+				<table>
+
+			<!--  		<tr>
+						<td><h:outputText value="Creation_Date">
+							</h:outputText></td>
+						<td><h:inputText value="#{claimBean.creationDate}">
+							</h:inputText></td>
+					</tr> -->
+
+			<!--		<h:panelGroup>
+						<h:form>           						
+								<label for="start">Creation_Date . </label> <input type="date"
+									value="#{claimBean.creationDate}" min="2019-01-01"   
+									max="2019-12-31" />
+						</h:form>
+					</h:panelGroup>  -->
+
+
+					<tr>
+						<td><h:outputText value="Claim_Status"></h:outputText></td>
+						<td><h:inputText value="#{claimBean.claimStatus}">
+							</h:inputText></td>
+					</tr>
+
+				
+			<!-- 		<tr>
+						<td><h:outputText value="Treatment_Date">
+							</h:outputText></td>
+						<td><h:inputText value="#{claimBean.treatmentDate}">
+							</h:inputText></td>
+					</tr>  -->
+
+			 <!-- 		<h:panelGroup>
+						<h:form>
+								<label for="start">Treatment_Date . </label> <input type="date"
+									value="#{claimBean.treatmentDate}" min="2019-01-01"
+									max="2019-12-31" />
+							
+						</h:form>
+					</h:panelGroup>    -->
+
+					<tr>
+						<td><h:outputText value="Claim_Object"></h:outputText></td>
+						<td><h:inputText value="#{claimBean.claimObject}">
+							</h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Claim_Content"></h:outputText></td>
+						<td><h:inputText value="#{claimBean.claimContent}">
+							</h:inputText></td>
+					</tr>
+
+
+					<tr>
+						<td colspan="2"><h:commandButton value="Add claim "
+								action="#{claimBean.addClaim()}" /> <h:commandButton
+								value="update claim" action="#{claimBean.updateClaim()}" /></td>
+					</tr>
+
+				</table>
+			</h:form>
+		</h:panelGroup>
+
+
+
+		<h:panelGroup columns="2">
+			<h:form>
+				<h:dataTable value="#{claimBean.claims}" var="claim" border="1">
+				
+				  
+		<!--			<h:column>
+						<f:facet name="header">
+							<h:outputText value="Creation_Date" />
+						</f:facet>
+						<h:outputText value="#{claim.creation}" />
+					</h:column>		  -->		
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Claim_Status" />
+						</f:facet>
+						<h:outputText value="#{claim.status}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Claim_Object" />
+						</f:facet>
+						<h:outputText value="#{claim.object}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Claim_Content" />
+						</f:facet>
+						<h:outputText value="#{claim.content}" />
+					</h:column>
+		<!--			<h:column>
+						<f:facet name="header">
+							<h:outputText value="Treatment_Date" />
+						</f:facet>
+						<h:outputText value="#{claim.treatment_Date}" />
+					</h:column>      -->    
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton action="#{claimBean.removeClaim(claim.id)}"
+							value="Supprimer" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton action="#{claimBean.displayClaim(claim)}"
+							value="Afficher" />
+					</h:column>
+
+				</h:dataTable>
+			</h:form>
+		</h:panelGroup>						
+
+
+
 	</ui:define>
 
 </ui:composition>
