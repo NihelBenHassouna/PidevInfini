@@ -19,7 +19,8 @@ public class ConsultHistopay implements Serializable{
 	
 	private Double amountpay;
 	private Date datepay;
-	
+	private Double amountpaid;
+	private Double amounttopay;
 	private static final long serialVersionUID = 1L;
 	@EJB
 	microcreditService microcredService;
@@ -79,6 +80,24 @@ public class ConsultHistopay implements Serializable{
 	}
 	public void setMicropay(List<MicrocreditPayment> micropay) {
 		this.micropay = micropay;
+	}
+	public Double getAmountpaid() {
+		user=microcredService.getCustomerById(id);
+		micro=microcredService.getMicrocrecitByCustomerCin(user);
+		amountpaid=micro.getAmountPaid();
+		return amountpaid;
+	}
+	public void setAmountpaid(Double amountpaid) {
+		this.amountpaid = amountpaid;
+	}
+	public Double getAmounttopay() {
+		user=microcredService.getCustomerById(id);
+		micro=microcredService.getMicrocrecitByCustomerCin(user);
+		amounttopay=micro.getTotalAmount();
+		return amounttopay;
+	}
+	public void setAmounttopay(Double amounttopay) {
+		this.amounttopay = amounttopay;
 	}
 	
 	

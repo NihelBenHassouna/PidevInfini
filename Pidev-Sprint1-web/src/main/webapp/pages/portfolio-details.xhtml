@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8' ?>  
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -5,7 +6,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	
+	>
+
 <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
@@ -58,8 +63,8 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="index.html">
-                        <h1><img src="../resources/images/logo.png" alt="logo"/></h1>
+                   <a class="navbar-brand" href="index.html">
+                    <img src="../microCreditRessources/images/logo.png" width="200" alt="logo"/>
                     </a>
                     
                 </div>
@@ -121,10 +126,10 @@
                 <div class="row">
                     <div class="action">
                         <div class="col-sm-12">
-                            <h1 class="title">Portfolio</h1>
-                            <p>Be Creative</p>
+                            <h1 class="title">Microcredit</h1>
+                            <p>Make a loan, change a life.</p>
                         </div>
-                    </div>
+                     </div>
                 </div>
             </div>
         </div>
@@ -135,7 +140,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <img src="../resources/images/portfolio-details/1.jpg" class="img-responsive" alt=""/>
+             <img src="../microCreditRessources/images/agricultureCredit.jpg" class="img-responsive" alt=""/>
                 </div>
                 <div class="col-sm-6">
                     <div class="project-name overflow">
@@ -147,106 +152,52 @@
                         <p>CredX offers several types of credits for small-scale agriculture and livestock farming. This type of credit is intended for the financing / development of new or existing agricultural projects..</p>
                         
                     </div>
-                    <div class="skills overflow">
-                        <h3>Skills:</h3>
-                        <ul class="nav navbar-nav navbar-default">
-                            <li><a href="#"><i class="fa fa-check-square"></i>Design</a></li>
-                            <li><a href="#"><i class="fa fa-check-square"></i>HTML/CSS</a></li>
-                            <li><a href="#"><i class="fa fa-check-square"></i>Javascript</a></li>
-                            <li><a href="#"><i class="fa fa-check-square"></i>Backend</a></li>
-                        </ul>
-                    </div>
-                    <div class="client overflow">
-                        <h3>Client:</h3>
-                        <ul class="nav navbar-nav navbar-default">
-                            <li><a href="#"><i class="fa fa-bolt"></i>Okler Themes</a></li>
-                        </ul>
-                    </div>
-                    <div class="live-preview">
-                        <a href="#" class="btn btn-common uppercase">Live preview</a>
-                    </div>
+                   <html    
+					 xmlns:h="http://xmlns.jcp.org/jsf/html" 
+					xmlns:p="http://primefaces.org/ui">
+<h:head><title>Rating</title>  </h:head>
+<h:body>  
+<h:form>
+            <p:growl id="messages" showDetail="true" />
+
+            <h:panelGrid columns="2" cellpadding="5">
+                
+                <h:outputText value=" Rate:" />
+                <h:outputText value="#{ratingView.average}" />
+                
+                <p:rating value="#{ratingView.rating3}">
+                    <p:ajax event="rate" listener="#{ratingView.onrate}" update="messages" />
+                    <p:ajax event="cancel" listener="#{ratingView.oncancel}" update="messages" />
+                </p:rating>
+
+                
+            </h:panelGrid>
+
+            <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" action="#{ratingView.addRate()}" style="margin:5px" />
+
+            <p:dialog header="Values" widgetVar="dlg" showEffect="fade" hideEffect="fade">
+                <h:panelGrid id="display" columns="2" cellpadding="5">
+                    <h:outputText value="Rating:" />
+                    <h:outputText value="#{ratingView.rating3}" />
+                    <h:outputText value="Average:" />
+                    <h:outputText value="#{ratingView.average}" />
+                    
+                </h:panelGrid>
+            </p:dialog>
+          
+        </h:form>
+        </h:body>
+   </html> 
+    
                 </div>
             </div>
         </div>
     </section>
      <!--/#portfolio-information-->
 
-    <section id="related-work" class="padding-top padding-bottom">
-        <div class="container">
-            <div class="row">
-                <h1 class="title text-center">Related Work</h1>
-                <div class="col-sm-3">
-                    <div class="portfolio-wrapper">
-                        <div class="portfolio-single">
-                            <div class="portfolio-thumb">
-                                <img src="../resources/images/portfolio/1.jpg" class="img-responsive" alt=""/>
-                            </div>
-                            <div class="portfolio-view">
-                                <ul class="nav nav-pills">
-                                    <li><a href="../resources/images/portfolio/1.jpg" data-lightbox="example-set"><i class="fa fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="portfolio-info ">
-                            <h2>Sailing Vivamus</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="portfolio-wrapper">
-                        <div class="portfolio-single">
-                            <div class="portfolio-thumb">
-                                <img src="../resources/images/portfolio/2.jpg" class="img-responsive" alt=""/>
-                            </div>
-                            <div class="portfolio-view">
-                                <ul class="nav nav-pills">
-                                    <li><a href="../resources/images/portfolio/2.jpg" data-lightbox="example-set"><i class="fa fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="portfolio-info ">
-                            <h2>Sailing Vivamus</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="portfolio-wrapper">
-                        <div class="portfolio-single">
-                            <div class="portfolio-thumb">
-                                <img src="../resources/images/portfolio/3.jpg" class="img-responsive" alt=""/>
-                            </div>
-                            <div class="portfolio-view">
-                                <ul class="nav nav-pills">
-                                    <li><a href="../resources/images/portfolio/3.jpg" data-lightbox="example-set"><i class="fa fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="portfolio-info ">
-                            <h2>Sailing Vivamus</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="portfolio-wrapper">
-                        <div class="portfolio-single">
-                            <div class="portfolio-thumb">
-                                <img src="../resources/images/portfolio/4.jpg" class="img-responsive" alt=""/>
-                            </div>
-                            <div class="portfolio-view">
-                                <ul class="nav nav-pills">
-                                    <li><a href="../resources/images/portfolio/4.jpg" data-lightbox="example-set"><i class="fa fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="portfolio-info ">
-                            <h2>Sailing Vivamus</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/#related-work-->
+
+
+
 
 
     <footer id="footer">

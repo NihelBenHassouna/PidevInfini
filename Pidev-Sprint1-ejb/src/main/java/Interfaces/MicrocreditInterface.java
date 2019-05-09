@@ -8,6 +8,7 @@ import Entities.Customer;
 import Entities.MicroCredit;
 import Entities.MicrocreditPayment;
 import Entities.MicrocreditRequest;
+import Entities.Rate;
 import Entities.User;
 
 
@@ -68,6 +69,12 @@ public interface MicrocreditInterface {
 	public Double getAmountStill();
 	public List<MicrocreditRequest> SearchMicrocreditRequestByCustomerID(Customer  cust);
 	public void DeleteReq(int idReq);
-	
-	
+	public void  addRate( Rate rate);
+	public Double AverageRate();
+	public Double AverageRateSchool();
+	public Double AverageRateMariage();
+	public Double AverageRateTravel();
+	public Double AverageRateAccommodation();
+	public Double AverageRateProfessional();
+
 }

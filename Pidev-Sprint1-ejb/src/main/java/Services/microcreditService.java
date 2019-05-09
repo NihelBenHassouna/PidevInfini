@@ -18,6 +18,7 @@ import Entities.Customer;
 import Entities.MicroCredit;
 import Entities.MicrocreditPayment;
 import Entities.MicrocreditRequest;
+import Entities.Rate;
 import Entities.User;
 import Interfaces.MicrocreditInterface;
 
@@ -712,11 +713,117 @@ public class microcreditService implements MicrocreditInterface {
 		em.remove(req);
 		}
 	
+	@Override
+	public void  addRate( Rate rate) {
+			
+		em.persist(rate);
+
+
+	}
+	@Override
+	public Double AverageRate()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'agricultureCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	@Override
+	public Double AverageRateSchool()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'schoolCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	@Override
+	public Double AverageRateMariage()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'mariageCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
 	
+	@Override
+	public Double AverageRateTravel()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'travelCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	@Override
+	public Double AverageRateAccommodation()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'AccomodationCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
 	
-	
-	
-	
+	@Override
+	public Double AverageRateProfessional()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'ProfessionalCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
 	
 	
 	
