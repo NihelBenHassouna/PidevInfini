@@ -6,21 +6,25 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
+import Entities.Agency;
 import Entities.Customer;
 import Entities.MicroCredit;
 import Entities.MicrocreditPayment;
 import Entities.MicrocreditRequest;
+import Entities.Rate;
 import Entities.User;
 import Interfaces.MicrocreditInterface;
 
 
 @Stateless
+@LocalBean
 public class microcreditService implements MicrocreditInterface {
 
 	@PersistenceContext(unitName = "Pidev-Sprint1-ejb")
@@ -33,8 +37,8 @@ public class microcreditService implements MicrocreditInterface {
 		em.persist(microcreditrequest);
 			Customer cus=em.find(Customer.class, id);
 			microcreditrequest.setUsers(cus);
-			
-			
+			microcreditrequest.setDateRequest(new java.util.Date());
+			microcreditrequest.setState("inprogress");
 			
 			return microcreditrequest.getId();
 		
@@ -651,6 +655,176 @@ public class microcreditService implements MicrocreditInterface {
 		
 		return sum;
 	} 
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public Double getAmountPaid() {
+		TypedQuery<Double> query = 
+				em.createQuery("select SUM(e.AmountPaid) from MicroCredit e ", Double.class);
+		
+		Double sum=0.0; 
+		try {
+			sum = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return sum;
+	} 
+	
+	
+	@Override
+	public Double getAmountStill() {
+		TypedQuery<Double> query = 
+				em.createQuery("select SUM(e.TotalAmount) from MicroCredit e", Double.class);
+		
+		Double sum=0.0; 
+		try {
+			sum = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return sum;
+	} 
+	
+	
+	
+	@Override
+	public List<MicrocreditRequest> SearchMicrocreditRequestByCustomerID(Customer  cust) {
+		TypedQuery<MicrocreditRequest> query= em.createQuery("select a from MicrocreditRequest a where a.users=:cust", MicrocreditRequest.class);
+		query.setParameter("cust",cust);
+		
+		return query.getResultList();
+	}
+	
+	@Override
+	public void DeleteReq(int idReq) {
+     MicrocreditRequest req = em.find(MicrocreditRequest.class, idReq);
+		em.remove(req);
+		}
+	
+	@Override
+	public void  addRate( Rate rate) {
+			
+		em.persist(rate);
+
+
+	}
+	@Override
+	public Double AverageRate()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'agricultureCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	@Override
+	public Double AverageRateSchool()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'schoolCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	@Override
+	public Double AverageRateMariage()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'mariageCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	
+	@Override
+	public Double AverageRateTravel()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'travelCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	@Override
+	public Double AverageRateAccommodation()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'AccomodationCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	
+	@Override
+	public Double AverageRateProfessional()
+	{
+		TypedQuery<Double> query = 
+				em.createQuery("select AVG(e.rate) from Rate e where e.typeMicrocred like'ProfessionalCredit' ", Double.class);
+		
+		Double avg=0.0; 
+		try {
+			avg = query.getSingleResult(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		
+		
+		return avg;
+	}
+	
 	
 	
 	
