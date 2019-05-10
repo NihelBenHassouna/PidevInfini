@@ -4,6 +4,7 @@ package Services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import javax.persistence.EntityManager;
@@ -22,6 +23,7 @@ import Interfaces.AdminInterface;
 
 
 @Stateless
+@LocalBean
 public class AdminAgencyService implements AdminInterface{
 	
 	

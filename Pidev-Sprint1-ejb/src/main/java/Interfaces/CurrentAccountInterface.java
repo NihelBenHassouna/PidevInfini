@@ -11,4 +11,5 @@ public List<CurrentAcount> DisplayActiveAccount();
 public CurrentAcount getidCurrentAcount(int id_user);
 public void updateCurrentAccount(int id,float amount); 
 public List<CurrentAcount> DisplayInActiveAccount();
+public double sumAccount();
 }

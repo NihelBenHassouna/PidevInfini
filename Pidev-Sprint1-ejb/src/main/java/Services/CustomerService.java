@@ -2,6 +2,7 @@ package Services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,7 @@ import Entities.Customer;
 import Entities.User;
 import Interfaces.CustomerInterface;
 @Stateless
+@LocalBean
 public class CustomerService implements CustomerInterface {
 	@PersistenceContext(unitName = "Pidev-Sprint1-ejb")
 
@@ -81,6 +83,13 @@ public class CustomerService implements CustomerInterface {
 		Customer a = new Customer();
 		a= (Customer) q.getSingleResult();
 		return a;
+	}
+
+
+	@Override
+	public void addCustomer(Customer c) {
+		em.persist(c);
+		
 	}
 
 

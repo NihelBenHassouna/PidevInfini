@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import Entities.RealEstateRequest;
 import Services.EstateRequestService;
 @ManagedBean(name = "requestBean") 
-@SessionScoped
+@ApplicationScoped
 public class RequestBean implements Serializable{
 
 

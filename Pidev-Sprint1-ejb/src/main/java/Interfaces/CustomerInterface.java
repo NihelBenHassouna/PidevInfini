@@ -16,4 +16,5 @@ public interface CustomerInterface {
 	public List<User> displayAgents();
 	public long countCustomers();
 	public Customer getCustomerByLoginAndPassword(String login, String password);
+	public void addCustomer(Customer c);
 }

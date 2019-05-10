@@ -33,7 +33,11 @@ public class LoginBean implements Serializable{
 		
 
 		if (user != null && (user.getUserType().equals("Agent"))) {
-			navigateTo = "/pages/test?faces-redirect=true";
+			navigateTo = "/pages/Agent/AgentSpace?faces-redirect=true";
+			loggedIn = true; 
+		}
+		if (user != null && (user.getUserType().equals("Customer"))) {
+			navigateTo = "/pages/CustomerSpace?faces-redirect=true";
 			loggedIn = true; 
 		}
 		
@@ -46,7 +50,7 @@ public class LoginBean implements Serializable{
 	public String doLogout()
 	{ 	
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/login?faces-redirect=true";
+		return "/pages/test?faces-redirect=true";
 	}
 	public LoginBean() {
 		super();

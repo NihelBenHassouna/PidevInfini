@@ -2,6 +2,7 @@ package Services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import javax.persistence.TypedQuery;
 import Entities.CurrentAcount;
 import Interfaces.CurrentAccountInterface;
 @Stateless
+@LocalBean
 @Remote(CurrentAccountInterface.class)
 public class CurrentAccountService implements CurrentAccountInterface{
 	@PersistenceContext(unitName = "Pidev-Sprint1-ejb")
@@ -55,5 +57,13 @@ public class CurrentAccountService implements CurrentAccountInterface{
 	
 		
 	}
+	@Override
+	public double sumAccount() {
+		Query query = 
+				em.createQuery("select sum(e.Balance) from CurrentAcount e ",Double.class);
+		   
+		    return (double) query.getSingleResult();
+	}
+	
 
 }
