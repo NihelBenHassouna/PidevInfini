@@ -26,7 +26,7 @@ public class ConsultReq implements Serializable{
 	
 	@EJB
 	microcreditService microcredService;
-	int id=6;
+	int id=10;
 	Customer user;
 	List<MicrocreditRequest> microReq;
 	public ConsultReq() {

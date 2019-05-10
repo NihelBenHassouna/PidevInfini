@@ -20,14 +20,14 @@ public class RatingView implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EJB
 	microcreditService microcredService;
-	int id=6;
+	int id=10;
 	private Customer cust;
-	private Double average;
-	private Double averageSchool;
-	private Double averageTravel;
-	private Double averageAccomodation;
-	private Double averageProfessional;
-	private Double averageMariage;
+	private Double average=0.0;
+	private Double averageSchool=0.0;
+	private Double averageTravel=0.0;
+	private Double averageAccomodation=0.0;
+	private Double averageProfessional=0.0;
+	private Double averageMariage=0.0;
 
 
 
@@ -145,12 +145,18 @@ public class RatingView implements Serializable{
     	
     	
     	cust=microcredService.getCustomerById(id);
+    	if(microcredService.RateExistAgriculture(cust)){
+    		FacesContext context = FacesContext.getCurrentInstance();
+            
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Rate Given Already!") );
+    	}
+    	else{
     	Rate rate =new Rate();
     	
     	rate.setCustomer2(cust);
     	rate.setRate(rating3);
     	rate.setTypeMicrocred("agricultureCredit");
-    	microcredService.addRate(rate);
+    	microcredService.addRate(rate);}
     }
 	
 	public void addRate1()
@@ -158,14 +164,105 @@ public class RatingView implements Serializable{
     	
     	
     	cust=microcredService.getCustomerById(id);
-    	Rate rate =new Rate();
+    	
+    	if(microcredService.RateExistSchool(cust)){
+    		FacesContext context = FacesContext.getCurrentInstance();
+            
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Rate Given Already!") );
+    	}
+    	else{
+    		Rate rate =new Rate();
     	
     	rate.setCustomer2(cust);
     	rate.setRate(rating3);
     	rate.setTypeMicrocred("schoolCredit");
     	microcredService.addRate(rate);
+    	}
     }
 	
+	public void addRateTravel()
+    {
+    	
+    	
+    	cust=microcredService.getCustomerById(id);
+    	
+    	if(microcredService.RateExistTravel(cust)){
+    		FacesContext context = FacesContext.getCurrentInstance();
+            
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Rate Given Already!") );
+    	}
+    	else{
+    		Rate rate =new Rate();
+    	
+    	rate.setCustomer2(cust);
+    	rate.setRate(rating3);
+    	rate.setTypeMicrocred("travelCredit");
+    	microcredService.addRate(rate);
+    	}
+    }
+	
+	public void addRateMariage()
+    {
+    	
+    	
+    	cust=microcredService.getCustomerById(id);
+    	
+    	if(microcredService.RateExistMariage(cust)){
+    		FacesContext context = FacesContext.getCurrentInstance();
+            
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Rate Given Already!") );
+    	}
+    	else{
+    		Rate rate =new Rate();
+    	
+    	rate.setCustomer2(cust);
+    	rate.setRate(rating3);
+    	rate.setTypeMicrocred("mariageCredit");
+    	microcredService.addRate(rate);
+    	}
+    }
+	
+	public void addRateAccomodation()
+    {
+    	
+    	
+    	cust=microcredService.getCustomerById(id);
+    	
+    	if(microcredService.RateExistAccomodation(cust)){
+    		FacesContext context = FacesContext.getCurrentInstance();
+            
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Rate Given Already!") );
+    	}
+    	else{
+    		Rate rate =new Rate();
+    	
+    	rate.setCustomer2(cust);
+    	rate.setRate(rating3);
+    	rate.setTypeMicrocred("AccomodationCredit");
+    	microcredService.addRate(rate);
+    	}
+    }
+	
+	public void addRateProfessional()
+    {
+    	
+    	
+    	cust=microcredService.getCustomerById(id);
+    	
+    	if(microcredService.RateExistProfessional(cust)){
+    		FacesContext context = FacesContext.getCurrentInstance();
+            
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Rate Given Already!") );
+    	}
+    	else{
+    		Rate rate =new Rate();
+    	
+    	rate.setCustomer2(cust);
+    	rate.setRate(rating3);
+    	rate.setTypeMicrocred("ProfessionalCredit");
+    	microcredService.addRate(rate);
+    	}
+    }
 	
 	
 	

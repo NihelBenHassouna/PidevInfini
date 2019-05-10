@@ -18,7 +18,7 @@ public class AddRequestMicro implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EJB
 	microcreditService microcredService;
-	int id=6;
+	int id=10;
 	private String typecred;
 	private int duration;
 	private Double amount;
@@ -96,10 +96,19 @@ public class AddRequestMicro implements Serializable{
 		microR.setMicrocreditSum(amount);
 		microR.setDescription(description);
 		microR.setDuration(duration);
+		
 		microcredService.addRequestMicrocredit(microR, id); 
+		Clear();
 		}
 	}
 	
 	
+	
+	public void Clear()
+	{
+		amount=0.0;
+		duration=0;
+		description="";
+	}
 
 }

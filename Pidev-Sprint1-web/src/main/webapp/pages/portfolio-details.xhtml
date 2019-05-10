@@ -7,16 +7,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:p="http://primefaces.org/ui"
-	
-	>
+	xmlns:p="http://primefaces.org/ui">
 
 <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
     <meta name="description" content=""></meta>
     <meta name="author" content=""></meta>
-    <title>Home | Triangle</title>
+    <title>Detail Agriculture | Microcredit</title>
     <link href="../resources/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../resources/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="../resources/css/animate.min.css" rel="stylesheet"/> 
@@ -93,16 +91,15 @@
                                 <li><a href="blogdetails.html">Blog Details</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active"><a href="portfolio.html">Portfolio <i class="fa fa-angle-down"></i></a>
+                          <li class="dropdown active"><a href="../pages/HomeMicrocredit.jsf">Microcredit <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li><a href="portfolio.html">Portfolio Default</a></li>
-                                <li><a href="portfoliofour.html">Isotope 3 Columns + Right Sidebar</a></li>
-                                <li><a href="portfolioone.html">3 Columns + Right Sidebar</a></li>
-                                <li><a href="portfoliotwo.html">3 Columns + Left Sidebar</a></li>
-                                <li><a href="portfoliothree.html">2 Columns</a></li>
-                                <li><a class="active" href="portfolio-details.xhtml">Portfolio Details</a></li>
+                                <li><a href="../pages/Simulator.jsf">Simulator</a></li>
+                                <li><a href="../pages/AddRequestMicro.jsf">Add Microcredit Request</a></li>
+                                <li><a href="../pages/ConsultReq.jsf">Consult Request Microcredit</a></li>
+                                <li><a href="../pages/ConsultHistopay.jsf">Consult Your Payment History</a></li>
+                               
                             </ul>
-                        </li>                         
+                        </li>                
                         <li><a href="shortcodes.html ">Shortcodes</a></li>                    
                     </ul>
                 </div>
@@ -194,11 +191,57 @@
         </div>
     </section>
      <!--/#portfolio-information-->
+<br/>
+<h:form>   
+    <p:growl id="growl" showDetail="true" sticky="true" />  
+       
+    <p:panel header="Add Comment">  
+        <h:panelGrid columns="2" cellpadding="5">  
+            <p:outputLabel for="msg" value="Comment Here:" />   
+            <p:inputTextarea id="msg" value="#{addCommentBean.comment}" required="true" />  
+        </h:panelGrid>  
+   
+        <p:commandButton value="Save" action="#{addCommentBean.saveCommentAgriculture()}" update="@form" />
+    </p:panel>     
+</h:form>
+
+
+<br/>
 
 
 
 
+<h:form> 
+    <p:dataScroller value="#{addCommentBean.agriclCom}" var="Com" chunkSize="10">
+        <f:facet name="header">
+Comments        </f:facet>
+         
+        <f:facet name="loader">
+            <p:commandButton type="button" value="More" icon="pi pi-chevron-circle-down"/>
+        </f:facet>
+ 
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+ 
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="By: " />
+                    <h:outputText value="#{Com.customer.firstName}  #{Com.customer.lastName}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Date: " />
+                    <h:outputText value="#{Com.dateCom}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Comment: " />
+                    <h:outputText value="#{Com.comment}" style="font-weight: bold"/>
+               
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+    </p:dataScroller>
+</h:form>
 
+
+
+   <br/>
 
     <footer id="footer">
         <div class="container">
@@ -208,23 +251,18 @@
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="testimonial bottom">
-                        <h2>Testimonial</h2>
                         <div class="media">
                             <div class="pull-left">
-                                <a href="#"><img src="../resources/images/home/profile1.png" alt=""/></a>
                             </div>
                             <div class="media-body">
-                                <blockquote>Nisi commodo bresaola, leberkas venison eiusmod bacon occaecat labore tail.</blockquote>
-                                <h3><a href="#">- Jhon Kalis</a></h3>
+                               
                             </div>
                          </div>
                         <div class="media">
                             <div class="pull-left">
-                                <a href="#"><img src="../resources/images/home/profile2.png" alt=""/></a>
                             </div>
                             <div class="media-body">
-                                <blockquote>Capicola nisi flank sed minim sunt aliqua rump pancetta leberkas venison eiusmod.</blockquote>
-                                <h3><a href="">- Abraham Josef</a></h3>
+                                
                             </div>
                         </div>   
                     </div> 
@@ -233,17 +271,14 @@
                     <div class="contact-info bottom">
                         <h2>Contacts</h2>
                         <address>
-                        E-mail: <a href="mailto:someone@example.com">email@email.com</a> <br/> 
-                        Phone: +1 (123) 456 7890 <br/> 
-                        Fax: +1 (123) 456 7891 <br/> 
+                        E-mail: <a href="mailto:someone@example.com">medaminemangour@gmail..com</a> <br/> 
+                        Phone: + (216) 20 187 082  <br/> 
                         </address>
 
                         <h2>Address</h2>
                         <address>
-                        Unit C2, St.Vincent's Trading Est., <br/> 
-                        Feeder Road, <br/> 
-                        Bristol, BS2 0UY <br/> 
-                        United Kingdom <br/> 
+                        ESPRIT <br/> 
+                        Tunis <br/> 
                         </address>
                     </div>
                 </div>
@@ -268,15 +303,13 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="copyright-text text-center">
-                        <p>&copy; Your Company 2014. All Rights Reserved.</p>
-                        <p>Designed by <a target="_blank" href="http://www.themeum.com">Themeum</a></p>
+                        <p>&copy; Your Company 2019. All Rights Reserved.</p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
     <!--/#footer-->
-
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>

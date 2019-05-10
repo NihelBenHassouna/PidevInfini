@@ -25,7 +25,7 @@ public class ConsultHistopay implements Serializable{
 	@EJB
 	microcreditService microcredService;
 	
-	int id=6;
+	int id=10;
 	Customer user;
 	MicroCredit micro;
 	List<MicrocreditPayment> micropay;

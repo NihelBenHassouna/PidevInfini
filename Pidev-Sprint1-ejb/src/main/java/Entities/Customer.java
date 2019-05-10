@@ -27,6 +27,10 @@ public class Customer extends User{
 	private List<Claim> claims;
 	@OneToMany(mappedBy="customer2")
 	private List<Rate> rates;
+	@OneToMany(mappedBy="customer")
+	private List<Comments> comments;
+	
+	
 	public List<Claim> getClaims() {
 		return claims;
 	}
@@ -54,6 +58,12 @@ public class Customer extends User{
 	}
 	public void setRates(List<Rate> rates) {
 		this.rates = rates;
+	}
+	public List<Comments> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comments> comments) {
+		this.comments = comments;
 	}
 
 

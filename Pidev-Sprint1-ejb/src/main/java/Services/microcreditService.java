@@ -10,10 +10,12 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import Entities.Agency;
+import Entities.Comments;
 import Entities.Customer;
 import Entities.MicroCredit;
 import Entities.MicrocreditPayment;
@@ -825,7 +827,146 @@ public class microcreditService implements MicrocreditInterface {
 		return avg;
 	}
 	
+	@Override
+	public void  addComment( Comments comment) {
+			comment.setDateCom(new java.util.Date());
+		em.persist(comment);
+
+
+	}
 	
+	@Override
+	public List<Comments> getCommentsSchool() {
+		TypedQuery<Comments> query = 
+		em.createQuery("select e from Comments e WHERE e.typeMicrocred like'schoolCredit' ", Comments.class); 
+		List<Comments> comments = null; 
+		try {
+			comments = query.getResultList(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		return comments;
+	}
+	@Override
+	public List<Comments> getCommentsAgriculture() {
+		TypedQuery<Comments> query = 
+		em.createQuery("select e from Comments e WHERE e.typeMicrocred like'agricultureCredit' ", Comments.class); 
+		List<Comments> comments = null; 
+		try {
+			comments = query.getResultList(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		return comments;
+	}
+	@Override
+	public List<Comments> getCommentsTravel() {
+		TypedQuery<Comments> query = 
+		em.createQuery("select e from Comments e WHERE e.typeMicrocred like'travelCredit' ", Comments.class); 
+		List<Comments> comments = null; 
+		try {
+			comments = query.getResultList(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		return comments;
+	}
+	@Override
+	public List<Comments> getCommentsMariage() {
+		TypedQuery<Comments> query = 
+		em.createQuery("select e from Comments e WHERE e.typeMicrocred like'mariageCredit' ", Comments.class); 
+		List<Comments> comments = null; 
+		try {
+			comments = query.getResultList(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		return comments;
+	}
+	@Override
+	public List<Comments> getCommentsAccomodation() {
+		TypedQuery<Comments> query = 
+		em.createQuery("select e from Comments e WHERE e.typeMicrocred like'AccomodationCredit' ", Comments.class); 
+		List<Comments> comments = null; 
+		try {
+			comments = query.getResultList(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		return comments;
+	}
+	@Override
+	public List<Comments> getCommentsProfessional() {
+		TypedQuery<Comments> query = 
+		em.createQuery("select e from Comments e WHERE e.typeMicrocred like'ProfessionalCredit' ", Comments.class); 
+		List<Comments> comments = null; 
+		try {
+			comments = query.getResultList(); 
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : " + e);
+		}
+		return comments;
+	}
+	@Override
+	public boolean RateExistSchool(Customer cust) {
+		String sql ="Select count(d) from Rate d where d.typeMicrocred like'schoolCredit' and d.customer2=:cust";
+		Query q =em.createQuery(sql);
+		q.setParameter("cust",cust);
+		long count=(long) q.getSingleResult();
+		System.out.println(" "+count);
+		return (count>0);
+	}
 	
+	@Override
+	public boolean RateExistAgriculture(Customer cust) {
+		String sql ="Select count(d) from Rate d where d.typeMicrocred like'agricultureCredit' and d.customer2=:cust";
+		Query q =em.createQuery(sql);
+		q.setParameter("cust",cust);
+		long count=(long) q.getSingleResult();
+		System.out.println(" "+count);
+		return (count>0);
+	}
+	@Override
+	public boolean RateExistTravel(Customer cust) {
+		String sql ="Select count(d) from Rate d where d.typeMicrocred like'travelCredit' and d.customer2=:cust";
+		Query q =em.createQuery(sql);
+		q.setParameter("cust",cust);
+		long count=(long) q.getSingleResult();
+		System.out.println(" "+count);
+		return (count>0);
+	}
+	@Override
+	public boolean RateExistMariage(Customer cust) {
+		String sql ="Select count(d) from Rate d where d.typeMicrocred like'mariageCredit' and d.customer2=:cust";
+		Query q =em.createQuery(sql);
+		q.setParameter("cust",cust);
+		long count=(long) q.getSingleResult();
+		System.out.println(" "+count);
+		return (count>0);
+	}
+	@Override
+	public boolean RateExistAccomodation(Customer cust) {
+		String sql ="Select count(d) from Rate d where d.typeMicrocred like'AccomodationCredit' and d.customer2=:cust";
+		Query q =em.createQuery(sql);
+		q.setParameter("cust",cust);
+		long count=(long) q.getSingleResult();
+		System.out.println(" "+count);
+		return (count>0);
+	}
+	@Override
+	public boolean RateExistProfessional(Customer cust) {
+		String sql ="Select count(d) from Rate d where d.typeMicrocred like'ProfessionalCredit' and d.customer2=:cust";
+		Query q =em.createQuery(sql);
+		q.setParameter("cust",cust);
+		long count=(long) q.getSingleResult();
+		System.out.println(" "+count);
+		return (count>0);
+	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import Entities.Comments;
 import Entities.Customer;
 import Entities.MicroCredit;
 import Entities.MicrocreditPayment;
@@ -76,5 +77,19 @@ public interface MicrocreditInterface {
 	public Double AverageRateTravel();
 	public Double AverageRateAccommodation();
 	public Double AverageRateProfessional();
-
+	public void  addComment( Comments comment);
+	public List<Comments> getCommentsSchool();
+	public List<Comments> getCommentsAgriculture();
+	public List<Comments> getCommentsTravel() ;
+	public List<Comments> getCommentsMariage();
+	public List<Comments> getCommentsAccomodation();
+	public List<Comments> getCommentsProfessional();
+	public boolean RateExistAgriculture(Customer cust);
+	public boolean RateExistSchool(Customer cust);
+	public boolean RateExistTravel(Customer cust) ;
+	public boolean RateExistMariage(Customer cust);
+	public boolean RateExistAccomodation(Customer cust);
+	public boolean RateExistProfessional(Customer cust);
+	
+	
 }
